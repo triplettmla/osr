@@ -14,13 +14,25 @@ class Recommendation{
   public $FAEmail;
   public $FAPhone;
   public $FAUserID; //captured from login?
-  public $FAUsername; 
+  public $FAUsername;
 
   //Grant Info
   public $Justification;
   public $RecommendationDate;
   public $Meeting;
-  public $
+  public $PrintedDate;
+  public $GrantType;
+  public $OSRResearch;
+  public $OSRTravel;
+  public $International;
+  public $Energy;
+  public $IRBApproved;
+  public $IRBProtocol;
+  public $IBCApproved;
+  public $IBCProtocol;
+  public $IACUCApproved;
+  public $IACUCProtocol;
+  
 
 }
  ?>
