@@ -1,0 +1,3 @@
+<h1>OSR Faculty Menu</h1>
+{RECOMMENDATIONLINK}
+{URALINK}
