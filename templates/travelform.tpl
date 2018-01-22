@@ -1,9 +1,9 @@
 <h1>OSR Travel Grant Application</h1>
-<form name="TravelApply" id="form" action="{SUBMITLINK}" method="post">
+<form name="TravelApply" id="form" action="index.php?module=osr&cmd=travelpost" method="post">
   <div class="panel panel-default">
   		<div class="panel-heading">About You</div>
   			<div class="panel-body">
-
+                <!---
                 <label for="FirstName">First Name:</label>
                 <div class="input-group">
                   <input type="text" class="form-control" id="FirstName" name="FirstName" value="" required size="30" maxlength="100" >
@@ -24,7 +24,7 @@
                 <label for="Email">Email:</label>
                 <div class="input-group">
                   <input type="email" class="form-control" id="Email" name="Email" value="" required size="30" maxlength="100">
-                </div>
+                </div>--->
                 <label for="Phone">Phone:</label>
                 <div class="input-group">
                   <input class="form-control"
@@ -35,16 +35,6 @@
                     required="Yes"
                     pattern="^[1-9]\d{2}-\d{3}-\d{4}" title="Please enter a phone number in the format 123-456-7890.">
           			<p class="help-block">123-456-7890</p>
-                </div>
-                <label for="ASUBox">ASU Box:</label>
-                <div class="input-group">
-                	<input type="text"
-                    class="form-control"
-                    name="ASUBox"
-                    value=""
-                    size="30"
-                    maxlength="100"
-                    id="ASUBox">
                 </div>
                 <label for="Status">Status</label>
                 <div class="input-group">

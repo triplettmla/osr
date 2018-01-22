@@ -1,5 +1,5 @@
 <h1>Undergraduate Research Assistantship</h1>
-<form name="ura" id="form" action="{SUBMITLINK}" method="post" >
+<form name="ura" id="form" action="index.php?module=osr&cmd=urapost" method="post" >
        <div class="panel panel-default">
        <div class="panel-heading">Faculty Member</div>
   			<div class="panel-body">

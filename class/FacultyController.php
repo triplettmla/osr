@@ -60,22 +60,17 @@ class FacultyController{
     $recommendationInfo = new RecommendationFactory;
     /* Check to see if connected to an existing application so info can be retrieved
       to preload some of recommendation form */
-    $deptOptions = $recommendationInfo->GetDepartments();
-    $submitLink = PHPWS_SOURCE_HTTP . 'index.php?module=osr&cmd=recommendationpost';
-    $arr = array('SUBMITLINK'=>$submitLink,
-                'DEPARTMENTS'=>implode('', $deptOptions));
+    $arr['DEPARTMENTS'] = implode($recommendationInfo->GetDepartments());
+
     return \PHPWS_Template::process($arr, 'osr', 'recommendation.tpl');
   }
 
   public function buildURAForm(){
     /* how should I switch semesters/years */
     $uraInfo = new URAGrantFactory;
-    $majorOptions = $uraInfo->GetMajors();
-    $deptOptions = $uraInfo->GetDepartments();
-    $submitLink = PHPWS_SOURCE_HTTP . 'index.php?module=osr&cmd=urapost';
-    $arr = array('SUBMITLINK'=>$submitLink,
-                'MAJORS'=>implode('', $majorOptions),
-                'DEPARTMENTS'=>implode('', $deptOptions));
+    $arr['MAJORS'] = implode($uraInfo->GetMajors());
+    $arr['DEPARTMENTS'] = implode($uraInfo->GetDepartments());
+
     return \PHPWS_Template::process($arr, 'osr', 'uraform.tpl');
   }
 }

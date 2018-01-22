@@ -32,53 +32,51 @@ class StudentController{
   }
 
   public function buildResearchForm(){
+    //Current_User::getusername();
+    $userName = 'triplettml';
+    $student = new UserFactory();
+    $userInfo = $student->getUserData($userName);
+    if ($userInfo){
+      $arr = $userInfo;
+      $arr['USERNAME'] = $userName;
+    }else {
+      //throw error- how?
+    }
+
     $researchInfo = new ResearchGrantFactory;
-    $majorOptions = $researchInfo->GetMajors();
-    $deptOptions = $researchInfo->GetDepartments();
-    $submitLink = PHPWS_SOURCE_HTTP . 'index.php?module=osr&cmd=researchpost';
-    $arr = array('SUBMITLINK'=>$submitLink,
-                'MAJORS'=>implode('', $majorOptions),
-                'DEPARTMENTS'=>implode('', $deptOptions));
+    $arr['MAJORS'] = implode($researchInfo->GetMajors());
+    $arr['DEPARTMENTS'] = implode($researchInfo->GetDepartments());
+
     return \PHPWS_Template::process($arr, 'osr', 'researchform.tpl');
   }
 
   public function buildResearchPost(){
-    //Call StudentFactory to write to database
-    $submitLink = PHPWS_SOURCE_HTTP . 'index.php?module=osr&cmd=researchpost';
-    $arr = array('SUBMITLINK'=>$submitLink);
+    //Call ResearchApplicationFactory to write to database
+    var_dump($_POST);
+    exit;
     return \PHPWS_Template::process($arr, 'osr', 'researchpost.tpl');
   }
 
   public function buildTravelForm(){
     $travelInfo = new TravelGrantFactory;
-    $majorOptions = $travelInfo->GetMajors();
-    $deptOptions = $travelInfo->GetDepartments();
-    $submitLink = PHPWS_SOURCE_HTTP . 'index.php?module=osr&cmd=travelpost';
-    $arr = array('SUBMITLINK'=>$submitLink,
-                'MAJORS'=>implode('', $majorOptions),
-                'DEPARTMENTS'=>implode('', $deptOptions));
+    $arr['MAJORS'] = implode($travelInfo->GetMajors());
+    $arr['DEPARTMENTS'] = implode($travelInfo->GetDepartments());
     return \PHPWS_Template::process($arr, 'osr', 'travelform.tpl');
   }
 
   public function buildInternationalForm(){
     $internationalInfo = new InternationalGrantFactory;
-    $majorOptions = $internationalInfo->GetMajors();
-    $deptOptions = $internationalInfo->GetDepartments();
-    $submitLink = PHPWS_SOURCE_HTTP . 'index.php?module=osr&cmd=internationalpost';
-    $arr = array('SUBMITLINK'=>$submitLink,
-                'MAJORS'=>implode('', $majorOptions),
-                'DEPARTMENTS'=>implode('', $deptOptions));
+    $arr['MAJORS'] = implode($internationalInfo->GetMajors());
+    $arr['DEPARTMENTS'] = implode($internationalInfo->GetDepartments());
+
     return \PHPWS_Template::process($arr, 'osr', 'internationalform.tpl');
   }
 
   public function buildGraduateForm(){
     $graduateInfo = new GraduateGrantFactory;
-    $majorOptions = $graduateInfo->GetMajors();
-    $deptOptions = $graduateInfo->GetDepartments();
-    $submitLink = PHPWS_SOURCE_HTTP . 'index.php?module=osr&cmd=graduatepost';
-    $arr = array('SUBMITLINK'=>$submitLink,
-                'MAJORS'=>implode('', $majorOptions),
-                'DEPARTMENTS'=>implode('', $deptOptions));
+    $arr['MAJORS'] = implode($graduateInfo->GetMajors());
+    $arr['DEPARTMENTS'] = implode($graduateInfo->GetDepartments());
+
     return \PHPWS_Template::process($arr, 'osr', 'graduateform.tpl');
   }
 

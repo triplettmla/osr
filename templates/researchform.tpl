@@ -1,95 +1,97 @@
 <h1>OSR Research Grant Application</h1>
-<form name="ResearchApply" id="form" action="{SUBMITLINK}" method="post">
+<form name="ResearchApply" id="form" action="index.php?module=osr&cmd=researchpost" method="post">
   <div class="panel panel-default">
   	<div class="panel-heading">About You</div>
   		<div class="panel-body">
-          <label for="FirstName">First Name:</label>
-                <div class="input-group">
-                  <input type="text" class="form-control" id="FirstName" name="FirstName" value="" required size="30" maxlength="100" >
-                </div>
-                <label for="LastName">Last Name:</label>
-                <div class="input-group">
-                  <input type="text" class="form-control" id="LastName" name="LastName" value="" required size="30" maxlength="100" >
-                </div>
-                <label for="StudentID">AppalNet Username:</label><br />
-                <div class="input-group">
-                  <input type="text" class="form-control" id="StudentID" name="StudentID" value="" required size="30" maxlength="100">
-                  <p class="help-block">AppalNet username only - do NOT enter your complete email address</p>
-                </div>
-                <label for="BannerID">Banner ID:</label>
-                <div class="input-group">
-                  <input type="text" class="form-control" id="BannerID" name="BannerID" value="" required size="30" maxlength="100">
-                </div>
-                <label for="Email">Email:</label>
-                <div class="input-group">
-                  <input type="email" class="form-control" id="Email" name="Email" value="" required size="30" maxlength="100">
-                </div>
-                <label for="Phone">Phone:</label>
-                <div class="input-group">
-                  <input class="form-control"
-                    name="Phone" type="Text"
-                    value=""
-                    size="12"
-                    maxlength="12"
-                    required="Yes"
-                    pattern="^[1-9]\d{2}-\d{3}-\d{4}" title="Please enter a phone number in the format 123-456-7890.">
-          			<p class="help-block">123-456-7890</p>
-                </div>
-                <label for="ASUBox">ASU Box:</label>
-                <div class="input-group">
-                	<input type="text"
-                    class="form-control"
-                    name="ASUBox"
-                    value=""
-                    size="30"
-                    maxlength="100"
-                    id="ASUBox">
-                </div>
-                <label for="Status">Status:</label>
-                <div class="input-group">
-                <select name="Status" required="yes" class="form-control">
-                    <option value="Freshman" selected="selected">Freshman</option>
-                    <option value="Sophomore">Sophomore</option>
-                    <option value="Junior">Junior</option>
-                    <option value="Senior">Senior</option>
-                    <option value="Graduate">Graduate</option>
-                    <option value="Doctoral">Doctoral Program</option>
-                  </select>
-                </div>
-                <label for="Majors">Majors: </label>
-                <div class="input-group">
-                    <select name="Major" class="form-control">
-                      {MAJORS}
-                    </select>
-                </div><br />
-                <label for="Honors">Are you a member of the Honors College?</label>
-                <div class="input-group">
-            	<input type="radio" name="Honors" value="no" label="No" checked="true" id="Honors" required>
-                No
-                <input type="radio" name="Honors" value="yes" label="Yes" id="Honors" required>
-                Yes
-                </div><br />
-                <label for="GPA">GPA:</label>
-                <div class="input-group">
-               	<input  type="number"
-                title="GPA must be a decimal number"
-                class="form-control"
-                name="GPA"
-                value=""
-                step="0.01"
-                min="0"
-                max="4"
-                size="10"
-                maxlength="5"
-                required="yes"
-                id="GPA">
-                </div><br />
-
-
-               </div>
+        <label for="FirstName">First Name: </label>
+        <div class="input-group">
+          <input type="text" readonly class="form-control-plaintext" id="FirstName" value="{FIRSTNAME}">
         </div>
-       <div class="panel panel-default">
-       <div class="panel-heading">About Your Faculty Mentor</div>
+        <label for="LastName">Last Name: </label>
+        <div class="input-group">
+          <input type="text" readonly class="form-control-plaintext" id="LastName" value="{LASTNAME}">
+        </div>
+        <label for="Email">Email: </label>
+        <div class="input-group">
+          <input type="text" readonly class="form-control-plaintext" id="Email" value="{EMAIL}">
+        </div>
+        <!---<label for="FirstName">First Name:</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="FirstName" name="FirstName" value="" required size="30" maxlength="100" >
+        </div>
+        <label for="LastName">Last Name:</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="LastName" name="LastName" value="" required size="30" maxlength="100" >
+        </div>
+        <label for="StudentID">AppalNet Username:</label><br />
+        <div class="input-group">
+          <input type="text" class="form-control" id="StudentID" name="StudentID" value="" required size="30" maxlength="100">
+          <p class="help-block">AppalNet username only - do NOT enter your complete email address</p>
+        </div>
+        <label for="BannerID">Banner ID:</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="BannerID" name="BannerID" value="" required size="30" maxlength="100">
+        </div>
+        <label for="Email">Email:</label>
+        <div class="input-group">
+          <input type="email" class="form-control" id="Email" name="Email" value="" required size="30" maxlength="100">
+        </div>--->
+        <label for="Phone">Phone:</label>
+        <div class="input-group">
+          <input class="form-control"
+            name="Phone" type="Text"
+            value=""
+            size="12"
+            maxlength="12"
+            required="Yes">
+            <!---pattern="^[1-9]\d{2}-\d{3}-\d{4}" title="Please enter a phone number in the format 123-456-7890.">--->
+  			<p class="help-block">123-456-7890</p>
+        </div>
+        <label for="Status">Status:</label>
+        <div class="input-group">
+        <select name="Status" required="yes" class="form-control">
+            <option value="Freshman" selected="selected">Freshman</option>
+            <option value="Sophomore">Sophomore</option>
+            <option value="Junior">Junior</option>
+            <option value="Senior">Senior</option>
+            <option value="Graduate">Graduate</option>
+            <option value="Doctoral">Doctoral Program</option>
+          </select>
+        </div>
+        <label for="Majors">Majors: </label>
+        <div class="input-group">
+            <select name="Major" class="form-control">
+              {MAJORS}
+            </select>
+        </div><br />
+        <label for="Honors">Are you a member of the Honors College?</label>
+        <div class="input-group">
+    	<input type="radio" name="Honors" value="no" label="No" checked="true" id="Honors" required>
+        No
+        <input type="radio" name="Honors" value="yes" label="Yes" id="Honors" required>
+        Yes
+        </div><br />
+        <!---<label for="GPA">GPA:</label>
+        <div class="input-group">
+       	<input  type="number"
+        title="GPA must be a decimal number"
+        class="form-control"
+        name="GPA"
+        value=""
+        step="0.01"
+        min="0"
+        max="4"
+        size="10"
+        maxlength="5"
+        required="yes"
+        id="GPA">
+      </div><br />--->
+
+
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">About Your Faculty Mentor</div>
   			<div class="panel-body">
        			 <label for="FAFirstName">First Name:</label>
                 <div class="input-group">
@@ -270,7 +272,6 @@ Yes
         </div>
     </div>
 
-    <input type="hidden" name="ApplicationDate" id="ApplicationDate" value="{ts '2017-12-19 13:53:14'}">
     <input type="submit" name="Submit" value="Submit" validate="submitonce" class="btn btn-default">
 		<input type="reset" name="Reset" value="Clear" class="btn btn-default">
 

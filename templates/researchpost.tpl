@@ -3,6 +3,6 @@
   <div class="panel-heading">Student Information</div>
   <div class="panel-body">
     <p>Research Form</p>
-    <p>{SUBMITLINK}</p>
+    <p></p>
   </div>
 </div>

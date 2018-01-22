@@ -1,5 +1,5 @@
 <h1>Recommendation</h1>
-<form name="Recommendation" id="form" action="{SUBMITLINK}" method="post" >
+<form name="Recommendation" id="form" action="index.php?module=osr&cmd=recommendationpost" method="post" >
 
        <div class="panel panel-default">
        <div class="panel-heading">About Your Faculty Mentor</div>
