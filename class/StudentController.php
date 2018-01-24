@@ -44,17 +44,31 @@ class StudentController{
     }
 
     $researchInfo = new ResearchGrantFactory;
-    $arr['MAJORS'] = implode($researchInfo->GetMajors());
-    $arr['DEPARTMENTS'] = implode($researchInfo->GetDepartments());
+    if (isset($_SESSION['formdata'])) {
+      $arr = $_SESSION['formdata'];
+      unset($_SESSION['formdata']);
+      $arr['MAJORS'] = implode($researchInfo->GetMajors($arr['Major']));
+      $arr['DEPARTMENTS'] = implode($researchInfo->GetDepartments($arr['FADepartment']));
+    } else {
+      $arr['MAJORS'] = implode($researchInfo->GetMajors());
+      $arr['DEPARTMENTS'] = implode($researchInfo->GetDepartments());
+    }
 
     return \PHPWS_Template::process($arr, 'osr', 'researchform.tpl');
   }
 
   public function buildResearchPost(){
     //Call ResearchApplicationFactory to write to database
-    var_dump($_POST);
-    exit;
-    return \PHPWS_Template::process($arr, 'osr', 'researchpost.tpl');
+    $postData = $_POST;
+    $researchInfo = new ResearchGrantFactory;
+    $results = $researchInfo->checkInput($postData);
+    //Error in the data
+    if ($results == false){
+      $this->buildResearchForm();
+    } else {
+      //$researchInfo->saveData();
+      return \PHPWS_Template::process($arr, 'osr', 'researchpost.tpl');
+    }
   }
 
   public function buildTravelForm(){

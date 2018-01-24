@@ -10,7 +10,7 @@ abstract class GrantApplicationFactory{
     $majorOptions[-1] = '<option>Select One</option>';
     foreach ($majors as $majorname) {
       if ($majorname == $chosenMajor)
-        $majorOptions[] = "<option selected>$majorname</option>";
+        $majorOptions[] = "<option selected=true>$majorname</option>";
       else{
         $majorOptions[] = "<option>$majorname</option>";
       }
@@ -28,14 +28,21 @@ abstract class GrantApplicationFactory{
     $deptOptions[-1] = '<option>Select One</option>';
     foreach ($depts as $deptname) {
       if ($deptname == $chosenDept)
-        $deptOptions[] = "<option selected>$deptname</option>";
+        $deptOptions[] = "<option selected=true>$deptname</option>";
       else{
         $deptOptions[] = "<option>$deptname</option>";
       }
     }
     return $deptOptions;
   }
-  
+
+  public function testInput($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
+
 }
 
 ?>
