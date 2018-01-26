@@ -1,4 +1,7 @@
 <h1>OSR Research Grant Application</h1>
+<!-- BEGIN Major_error -->
+<div class="label label-danger">{ERRORONPAGE}</div>
+<!-- END Major_error -->
 <form name="ResearchApply" id="form" action="index.php?module=osr&cmd=researchpost" method="post">
   <div class="panel panel-default">
   	<div class="panel-heading">About You</div>
@@ -212,9 +215,9 @@
                 <div class="label label-danger">{IRBApproved_error}</div>
                 <!-- END IRBApproved_error -->
               </div>
-
               <label for="IRBProtocol">If yes, what is the IRB protocol number:</label>
-              <div class="input-group"><input type="text"
+              <div class="input-group">
+                <input type="text"
                 name="IRBProtocol"
                 value="{IRBProtocol}"
                 size="10"

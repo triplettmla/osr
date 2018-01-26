@@ -1,6 +1,7 @@
 <?php
+//use \phpws2\Database;
 class ResearchGrantFactory extends GrantApplicationFactory{
-  public function checkInput($inputData){
+  public function CheckInput($inputData){
     //Save post data as entered by student
     $postData = $inputData;
 
@@ -82,6 +83,35 @@ class ResearchGrantFactory extends GrantApplicationFactory{
     }else{
       return $inputData;
     }
+  }
+
+  public function SaveData(){
+    /* Notes from Matt
+    $db = Database::getDB();
+
+    // this instantiates a new database object that contains all my connection stuff
+    // now I am am going to create a table
+
+    $tbl = $db->addTable('modules');
+
+    // This ADDS a table to the database object. I catch the table object so
+    // I can manipulate it
+
+    // at this point I can call
+
+    $result = $db->select();
+
+    // and I will get an array of values from the modules table
+
+    // if I want to limit by a column
+
+    $tbl->addFieldConditional('title', 'access');*/
+
+
+    return true;
+  }
+  public function EmailConfirmation(){
+    return true;
   }
 
 }

@@ -1,6 +1,6 @@
 <?php
 class UserFactory{
-    public function getUserData($userName){
+    public function GetUserData($userName){
       if (isset($userName)){
         //This will be swapped with a call to banner
         switch ($userName) {

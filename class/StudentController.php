@@ -4,25 +4,25 @@ class StudentController{
     if (isset($_GET['cmd'])){
       switch ($_GET['cmd']) {
         case 'researchform':
-          return $this->buildResearchForm();
+          return $this->BuildResearchForm();
         break;
         case 'researchpost':
-          return $this->buildResearchPost();
+          return $this->BuildResearchPost();
         break;
         case 'travelform':
-          return $this->buildTravelForm();
+          return $this->BuildTravelForm();
         break;
         case 'travelpost':
-          return $this->buildTravelPost();
+          return $this->BuildTravelPost();
         break;
         case 'internationalform':
-          return $this->buildInternationalForm();
+          return $this->BuildInternationalForm();
         break;
         case 'internationalpost':
-          return $this->buildInternationalPost();
+          return $this->BuildInternationalPost();
         break;
         case 'graduateform':
-          return $this->buildGraduateForm();
+          return $this->BuildGraduateForm();
         break;
 
       }
@@ -31,12 +31,12 @@ class StudentController{
     }
   }
 
-  public function buildResearchForm(){
+  public function BuildResearchForm(){
     $arr = array();
     //Current_User::getusername();
     $userName = 'triplettml';
     $student = new UserFactory();
-    $userInfo = $student->getUserData($userName);
+    $userInfo = $student->GetUserData($userName);
     if ($userInfo){
       $arr += $userInfo;
       $arr['USERNAME'] = $userName;
@@ -60,6 +60,7 @@ class StudentController{
       $arr['IBCAPPROVEDRADIO'] = $researchInfo->BuildYesNoRadioButton('IBCApproved', $arr['IBCApproved']);
       $arr['ABROADRADIO'] = $researchInfo->BuildYesNoRadioButton('Abroad', $arr['Abroad']);
       $arr['VISIBLERADIO'] = $researchInfo->BuildYesNoRadioButton('Visible', $arr['Visible']);
+      $arr['ERRORONPAGE'] = 'ERROR: Please correct the fields and resubmit.';
     } else {
       $arr['MAJORS'] = $researchInfo->GetMajors();
       $arr['DEPARTMENTS'] = $researchInfo->GetDepartments();
@@ -78,11 +79,11 @@ class StudentController{
     return \PHPWS_Template::process($arr, 'osr', 'researchform.tpl');
   }
 
-  public function buildResearchPost(){
+  public function BuildResearchPost(){
     //Call ResearchApplicationFactory to write to database
     $postData = $_POST;
     $researchInfo = new ResearchGrantFactory;
-    $results = $researchInfo->checkInput($postData);
+    $results = $researchInfo->CheckInput($postData);
     //Error in the data
 
     if ($results == false){
@@ -93,30 +94,30 @@ class StudentController{
     }
   }
 
-  public function buildTravelForm(){
+  public function BuildTravelForm(){
     $travelInfo = new TravelGrantFactory;
-    $arr['MAJORS'] = implode($travelInfo->GetMajors());
-    $arr['DEPARTMENTS'] = implode($travelInfo->GetDepartments());
+    $arr['MAJORS'] = $travelInfo->GetMajors();
+    $arr['DEPARTMENTS'] = $travelInfo->GetDepartments();
     return \PHPWS_Template::process($arr, 'osr', 'travelform.tpl');
   }
 
-  public function buildInternationalForm(){
+  public function BuildInternationalForm(){
     $internationalInfo = new InternationalGrantFactory;
-    $arr['MAJORS'] = implode($internationalInfo->GetMajors());
-    $arr['DEPARTMENTS'] = implode($internationalInfo->GetDepartments());
+    $arr['MAJORS'] = $internationalInfo->GetMajors();
+    $arr['DEPARTMENTS'] = $internationalInfo->GetDepartments();
 
     return \PHPWS_Template::process($arr, 'osr', 'internationalform.tpl');
   }
 
-  public function buildGraduateForm(){
+  public function BuildGraduateForm(){
     $graduateInfo = new GraduateGrantFactory;
-    $arr['MAJORS'] = implode($graduateInfo->GetMajors());
-    $arr['DEPARTMENTS'] = implode($graduateInfo->GetDepartments());
+    $arr['MAJORS'] = $graduateInfo->GetMajors();
+    $arr['DEPARTMENTS'] = $graduateInfo->GetDepartments();
 
     return \PHPWS_Template::process($arr, 'osr', 'graduateform.tpl');
   }
 
-  public function buildStudentMenu(){
+  public function BuildStudentMenu(){
 
     /* If there are outstanding Final Reports, students can't apply for new grant */
     $arr = array();

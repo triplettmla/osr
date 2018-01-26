@@ -1,39 +1,6 @@
 BEGIN;
 -- DROP TABLE IF EXISTS `abstracts`;
-CREATE TABLE `Mentor_apps` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `StudentFirstName` varchar(255) DEFAULT NULL,
-  `StudentLastName` varchar(255) DEFAULT NULL,
-  `ApplicationDate` datetime DEFAULT NULL,
-  `BannerID` varchar(50) DEFAULT NULL,
-  `StudentEmail` varchar(255) DEFAULT NULL,
-  `ASUBox` varchar(255) DEFAULT NULL,
-  `StudentStatus` varchar(255) DEFAULT NULL,
-  `StudentMajor` varchar(255) DEFAULT NULL,
-  `Semester` varchar(30) DEFAULT NULL,
-  `RecentYear` varchar(30) DEFAULT NULL,
-  `FacultyFirstName` varchar(255) DEFAULT NULL,
-  `FacultyLastName` varchar(255) DEFAULT NULL,
-  `FacultyEmail` varchar(255) DEFAULT NULL,
-  `FacultyDepartment` varchar(255) DEFAULT NULL,
-  `Qualities` text,
-  `MentorAffect` text,
-  `OtherInfo` text,
-  `FacultyCollege` varchar(255) DEFAULT NULL,
-  `ChairFirstName` varchar(255) DEFAULT NULL,
-  `ChairLastName` varchar(255) DEFAULT NULL,
-  `ChairEmail` varchar(255) DEFAULT NULL,
-  `MentorYears` text,
-  `Philosophy` text,
-  `Presentations` text,
-  `Publications` text,
-  `SupportLetter` text,
-  `FacultyResponseDate` datetime DEFAULT NULL,
-  `ChairResponseDate` datetime DEFAULT NULL,
-  `StudentPhone` varchar(30) DEFAULT NULL,
-  `Awarded` varchar(5) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-)
+
 
 CREATE TABLE `abstracts` (
   `StudentID` varchar(30) NOT NULL DEFAULT '',
