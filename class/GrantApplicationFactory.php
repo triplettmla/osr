@@ -7,14 +7,7 @@ abstract class GrantApplicationFactory{
 
     $majors = json_decode($majorsString);
 
-    foreach ($majors as $majorname) {
-      if ($majorname == $chosenMajor)
-        $majorOptions[] = "<option selected=true>$majorname</option>";
-      else{
-        $majorOptions[] = "<option>$majorname</option>";
-      }
-    }
-    return $majorOptions;
+    return $this->BuildOptions($majors, $chosenMajor);
   }
 
   public function GetDepartments($chosenDept = ''){
@@ -24,14 +17,44 @@ abstract class GrantApplicationFactory{
 
     $depts = json_decode($deptString);
 
-    foreach ($depts as $deptname) {
-      if ($deptname == $chosenDept)
-        $deptOptions[] = "<option selected=true>$deptname</option>";
+    return $this->BuildOptions($depts, $chosenDept);
+  }
+
+  public function GetStatus($chosenStatus = ''){
+    $statusList = array('Freshman', 'Sophomore', 'Junior', 'Senior', 'Graduate', 'Doctoral');
+    return $this->BuildOptions($statusList, $chosenStatus);
+  }
+
+  public function GetCollege($chosenCollege = ''){
+    $collegeList = array('Arts and Sciences', 'Business', 'Education', 'Fine and Applied Arts',
+                        'Health Sciences', 'Honors College', 'Other/Business Affairs',
+                        'School of Music', 'University College');
+    return $this->BuildOptions($collegeList, $chosenCollege);
+  }
+
+  public function BuildOptions($arrList, $chosenOption = ''){
+    foreach ($arrList as $optionItem) {
+      if ($optionItem == $chosenOption)
+        $optionList[] = "<option selected=true>$optionItem</option>";
       else{
-        $deptOptions[] = "<option>$deptname</option>";
+        $optionList[] = "<option>$optionItem</option>";
       }
     }
-    return $deptOptions;
+    return implode($optionList);
+  }
+
+  public function BuildYesNoRadioButton($radioName, $chosenButton = ''){
+    if ($chosenButton == 'no'){
+      $radioString = '<input type="radio" id="'. $radioName . '" name="'. $radioName . '" value="no" label="No" checked required>No ' .
+                     '<input type="radio" id="' . $radioName . '" name="'. $radioName . '" value="yes" label="Yes" required>Yes';
+    } elseif ($chosenButton == 'yes'){
+      $radioString = '<input type="radio" id="'. $radioName . '" name="'. $radioName . '" value="no" label="No" required>No ' .
+                     '<input type="radio" id="' . $radioName . '" name="'. $radioName . '" value="yes" label="Yes" checked required>Yes';
+    } else {
+      $radioString = '<input type="radio" id="'. $radioName . '" name="'. $radioName . '" value="no" label="No" required>No ' .
+                     '<input type="radio" id="' . $radioName . '" name="'. $radioName . '" value="yes" label="Yes" required>Yes';
+    }
+    return $radioString;
   }
 
   public function testInput($data) {

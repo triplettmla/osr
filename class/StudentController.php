@@ -48,11 +48,31 @@ class StudentController{
     if (isset($_SESSION['formdata'])) {
       $arr += $_SESSION['formdata'];
       unset($_SESSION['formdata']);
-      $arr['MAJORS'] = implode($researchInfo->GetMajors($arr['Major']));
-      $arr['DEPARTMENTS'] = implode($researchInfo->GetDepartments($arr['FADepartment']));
+      $arr['MAJORS'] = $researchInfo->GetMajors($arr['Major']);
+      $arr['DEPARTMENTS'] = $researchInfo->GetDepartments($arr['FADepartment']);
+      $arr['STATUSLIST'] = $researchInfo->GetStatus($arr['Status']);
+      $arr['FACOLLEGELIST'] = $researchInfo->GetCollege($arr['FACollege']);
+      $arr['HONORSRADIO'] = $researchInfo->BuildYesNoRadioButton('Honors', $arr['Honors']);
+      $arr['PRIORFUNDINGRADIO'] = $researchInfo->BuildYesNoRadioButton('PriorFunding', $arr['PriorFunding']);
+      $arr['AMOUNTLESSRADIO'] = $researchInfo->BuildYesNoRadioButton('AmountLess', $arr['AmountLess']);
+      $arr['IRBAPPROVEDRADIO'] = $researchInfo->BuildYesNoRadioButton('IRBApproved', $arr['IRBApproved']);
+      $arr['IACUCAPPROVEDRADIO'] = $researchInfo->BuildYesNoRadioButton('IACUCApproved', $arr['IACUCApproved']);
+      $arr['IBCAPPROVEDRADIO'] = $researchInfo->BuildYesNoRadioButton('IBCApproved', $arr['IBCApproved']);
+      $arr['ABROADRADIO'] = $researchInfo->BuildYesNoRadioButton('Abroad', $arr['Abroad']);
+      $arr['VISIBLERADIO'] = $researchInfo->BuildYesNoRadioButton('Visible', $arr['Visible']);
     } else {
-      $arr['MAJORS'] = implode($researchInfo->GetMajors());
-      $arr['DEPARTMENTS'] = implode($researchInfo->GetDepartments());
+      $arr['MAJORS'] = $researchInfo->GetMajors();
+      $arr['DEPARTMENTS'] = $researchInfo->GetDepartments();
+      $arr['STATUSLIST'] = $researchInfo->GetStatus();
+      $arr['FACOLLEGELIST'] = $researchInfo->GetCollege();
+      $arr['HONORSRADIO'] = $researchInfo->BuildYesNoRadioButton('Honors');
+      $arr['PRIORFUNDINGRADIO'] = $researchInfo->BuildYesNoRadioButton('PriorFunding');
+      $arr['AMOUNTLESSRADIO'] = $researchInfo->BuildYesNoRadioButton('AmountLess');
+      $arr['IRBAPPROVEDRADIO'] = $researchInfo->BuildYesNoRadioButton('IRBApproved');
+      $arr['IACUCAPPROVEDRADIO'] = $researchInfo->BuildYesNoRadioButton('IACUCApproved');
+      $arr['IBCAPPROVEDRADIO'] = $researchInfo->BuildYesNoRadioButton('IBCApproved');
+      $arr['ABROADRADIO'] = $researchInfo->BuildYesNoRadioButton('Abroad');
+      $arr['VISIBLERADIO'] = $researchInfo->BuildYesNoRadioButton('Visible');
     }
 
     return \PHPWS_Template::process($arr, 'osr', 'researchform.tpl');

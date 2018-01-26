@@ -53,12 +53,7 @@
         <div class="input-group">
         <select name="Status" required="yes" class="form-control">
             <option value="">Select One</option>
-            <option value="Freshman">Freshman</option>
-            <option value="Sophomore">Sophomore</option>
-            <option value="Junior">Junior</option>
-            <option value="Senior">Senior</option>
-            <option value="Graduate">Graduate</option>
-            <option value="Doctoral">Doctoral Program</option>
+            {STATUSLIST}
         </select>
         <!-- BEGIN Status_error -->
         <div class="label label-danger">{Status_error}</div>
@@ -76,10 +71,7 @@
         </div><br />
         <label for="Honors">Are you a member of the Honors College?</label>
         <div class="input-group">
-    	      <input type="radio" name="Honors" value="no" label="No" id="Honors" required>
-        No
-            <input type="radio" name="Honors" value="yes" label="Yes" id="Honors" required>
-        Yes
+    	      {HONORSRADIO}
         <!-- BEGIN Honors_error -->
         <div class="label label-danger">{Honors_error}</div>
         <!-- END Honors_error -->
@@ -116,24 +108,7 @@
             <select name="FACollege" class="form-control">
               <option value="Select One">
                     Select One</option>
-              <option value="Arts and Sciences">
-                  Arts and Sciences</option>
-              <option value="Business">
-                  Business</option>
-              <option value="Education">
-                  Education</option>
-              <option value="Fine and Applied Arts">
-                  Fine and Applied Arts</option>
-              <option value="Health Sciences">
-                  Health Sciences</option>
-              <option value="Honors College">
-                  Honors College</option>
-              <option value="Other/Business Affairs">
-                  Other/Business Affairs</option>
-              <option value="School of Music">
-                  School of Music</option>
-              <option value="University College">
-                  University College</option>
+                    {FACOLLEGELIST}
             </select>
             <!-- BEGIN FACollege_error -->
             <div class="label label-danger">{FACollege_error}</div>
@@ -174,16 +149,14 @@
             </div><br />
             <label for="PriorFunding">Have you received prior funding?</label>
             <div class="input-group">
-                <input type="radio" name="PriorFunding" value="no" label="No" id="PriorFunding" required>No
-      			    <input type="radio" name="PriorFunding" value="yes" label="Yes" id="PriorFunding" required>Yes
+                {PRIORFUNDINGRADIO}
                 <!-- BEGIN PriorFunding_error -->
                 <div class="label label-danger">{PriorFunding_error}</div>
                 <!-- END PriorFunding_error -->
             </div><br />
             <label for="AmountLess">Would you be willing to accept less than the amount requested?</label>
             <div class="input-group">
-		            <input type="radio" name="AmountLess" value="no" label="No" id="AmountLess" required>No
-  			        <input type="radio" name="AmountLess" value="yes" label="Yes" id="AmountLess" required>Yes
+		            {AMOUNTLESSRADIO}
                 <!-- BEGIN AmountLess_error -->
                 <div class="label label-danger">{AmountLess_error}</div>
                 <!-- END AmountLess_error -->
@@ -234,8 +207,7 @@
               <p><strong>Compliance Questions: Please contact the Office of Research Protections if you have questions about the required Compliance Questions at <a ref="mailto:compliance@appstate.edu">compliance@appstate.edu</a> or 828-262-2692. The Office of Student Research cannot answer questions about this information. If compliance approval is not applicable to your research, please click no for each response.</strong></p>
               <label for="IRBApproved">If human research, is the project IRB approved?</label>
               <div class="input-group">
-                <input type="radio" name="IRBApproved" value="no" label="No" id="IRBApproved" required>No
-                <input type="radio" name="IRBApproved" value="yes" label="Yes" id="IRBApproved" required>Yes
+                {IRBAPPROVEDRADIO}
                 <!-- BEGIN IRBApproved_error -->
                 <div class="label label-danger">{IRBApproved_error}</div>
                 <!-- END IRBApproved_error -->
@@ -254,8 +226,7 @@
               </div> <br />
               <label for="IACUCApproved">If vertebrate research, is the project IACUC approved?</label>
               <div class="input-group">
-                <input type="radio" name="IACUCApproved" value="no" label="No" id="IACUCApproved" required>No
-                <input type="radio" name="IACUCApproved" value="yes" label="Yes" id="IACUCApproved" required>Yes
+                {IACUCAPPROVEDRADIO}
                 <!-- BEGIN IACUCApproved_error -->
                 <div class="label label-danger">{IACUCApproved_error}</div>
                 <!-- END IACUCApproved_error -->
@@ -269,10 +240,8 @@
                       <!-- END IACUCProtocol_error -->
               </div> <br />
               <label for="IBCApproved">If recombinant DNA research, is the project IBC approved?</label>
-              <div class="input-group"><input type="radio" name="IBCApproved" value="no" label="No" id="IBCApproved" required>
-                No
-                <input type="radio" name="IBCApproved" value="yes" label="Yes" id="IBCApproved" required>
-                Yes
+              <div class="input-group">
+                {IBCAPPROVEDRADIO}
                 <!-- BEGIN IBCApproved_error -->
                 <div class="label label-danger">{IBCApproved_error}</div>
                 <!-- END IBCApproved_error -->
@@ -287,20 +256,14 @@
               <div class='row'><hr></div>
               <label for="Abroad">Does your research project require travel outside of the United States?</label>
               <div class="input-group">
-                <input type="radio" name="Abroad" value="no" label="No" id="Abroad" required>
-                No
-        			  <input type="radio" name="Abroad" value="yes" label="Yes" id="Abroad" required>
-                Yes
+                {ABROADRADIO}
                 <!-- BEGIN Abroad_error -->
                 <div class="label label-danger">{Abroad_error}</div>
                 <!-- END Abroad_error -->
               </div><br />
           		<label for="Visible">If funded do you give the OSR permission to post your "Project Description" on the OSR website under the "Current Projects" link?</label>
               <div class="input-group">
-                <input type="radio" name="Visible" value="no" label="No" id="Visible" required>
-                No
-                <input type="radio" name="Visible" value="yes" label="Yes" id="Visible" required>
-                Yes
+                {VISIBLERADIO}
                 <!-- BEGIN Visible_error -->
                 <div class="label label-danger">{Visible_error}</div>
                 <!-- END Visible_error -->
