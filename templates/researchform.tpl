@@ -59,13 +59,20 @@
             <option value="Senior">Senior</option>
             <option value="Graduate">Graduate</option>
             <option value="Doctoral">Doctoral Program</option>
-          </select>
+        </select>
+        <!-- BEGIN Status_error -->
+        <div class="label label-danger">{Status_error}</div>
+        <!-- END Status_error -->
         </div>
         <label for="Majors">Majors: </label>
         <div class="input-group">
             <select name="Major" class="form-control">
+              <option value="">Select One</option>
               {MAJORS}
             </select>
+            <!-- BEGIN Major_error -->
+            <div class="label label-danger">{Major_error}</div>
+            <!-- END Major_error -->
         </div><br />
         <label for="Honors">Are you a member of the Honors College?</label>
         <div class="input-group">
@@ -73,23 +80,10 @@
         No
             <input type="radio" name="Honors" value="yes" label="Yes" id="Honors" required>
         Yes
+        <!-- BEGIN Honors_error -->
+        <div class="label label-danger">{Honors_error}</div>
+        <!-- END Honors_error -->
         </div><br />
-        <!---<label for="GPA">GPA:</label>
-        <div class="input-group">
-       	<input  type="number"
-        title="GPA must be a decimal number"
-        class="form-control"
-        name="GPA"
-        value=""
-        step="0.01"
-        min="0"
-        max="4"
-        size="10"
-        maxlength="5"
-        required="yes"
-        id="GPA">
-      </div><br />--->
-
 
       </div>
     </div>
@@ -98,18 +92,24 @@
   			<div class="panel-body">
        			<label for="FAFirstName">First Name:</label>
             <div class="input-group">
-              <input type="text" class="form-control" id="FAFirstName" name="FAFirstName" value="" size="30" maxlength="100" >
+              <input type="text" class="form-control" id="FAFirstName" name="FAFirstName" value="{FAFirstName}" size="30" maxlength="100" >
               <!-- BEGIN FAFirstName_error -->
               <div class="label label-danger">{FAFirstName_error}</div>
               <!-- END FAFirstName_error -->
             </div>
             <label for="FALastName">Last Name:</label>
             <div class="input-group">
-              <input type="text" class="form-control" id="FALastName" name="FALastName" value="" required size="30" maxlength="100" >
+              <input type="text" class="form-control" id="FALastName" name="FALastName" value="{FALastName}" required size="30" maxlength="100" >
+              <!-- BEGIN FALastName_error -->
+              <div class="label label-danger">{FALastName_error}</div>
+              <!-- END FALastName_error -->
             </div>
             <label for="FAEmail">Email:</label>
             <div class="input-group">
-              <input type="email" class="form-control" id="FAEmail" name="FAEmail" value="" required size="30" maxlength="100">
+              <input type="email" class="form-control" id="FAEmail" name="FAEmail" value="{FAEmail}" required size="30" maxlength="100">
+              <!-- BEGIN FAEmail_error -->
+              <div class="label label-danger">{FAEmail_error}</div>
+              <!-- END FAEmail_error -->
             </div>
             <label for="FACollege">College:</label>
             <div class="input-group">
@@ -135,16 +135,22 @@
               <option value="University College">
                   University College</option>
             </select>
+            <!-- BEGIN FACollege_error -->
+            <div class="label label-danger">{FACollege_error}</div>
+            <!-- END FACollege_error -->
       			</div>
             <label for="FADepartment">Department/Program:</label>
             <div class="input-group">
             <select name="FADepartment" class="form-control">
+              <option value="">Select One</option>
               {DEPARTMENTS}
           	</select>
+            <!-- BEGIN FADepartment_error -->
+            <div class="label label-danger">{FADepartment_error}</div>
+            <!-- END FADepartment_error -->
             </div>
         </div>
 	   </div>
-
 	   <div class="panel panel-default">
        <div class="panel-heading">About Your Research</div>
   			<div class="panel-body">
@@ -154,7 +160,7 @@
             	<input type="number"
                 class="form-control"
                 name="Amount"
-                value=""
+                value="{Amount}"
                 size="10"
                 maxlength="4"
                 min="1"
@@ -162,87 +168,121 @@
                 required="yes"
                 id="Amount">
             <span class="input-group-addon">.00</span>
+            <!-- BEGIN Amount_error -->
+            <div class="label label-danger">{Amount_error}</div>
+            <!-- END Amount_error -->
             </div><br />
             <label for="PriorFunding">Have you received prior funding?</label>
             <div class="input-group">
                 <input type="radio" name="PriorFunding" value="no" label="No" id="PriorFunding" required>No
       			    <input type="radio" name="PriorFunding" value="yes" label="Yes" id="PriorFunding" required>Yes
+                <!-- BEGIN PriorFunding_error -->
+                <div class="label label-danger">{PriorFunding_error}</div>
+                <!-- END PriorFunding_error -->
             </div><br />
             <label for="AmountLess">Would you be willing to accept less than the amount requested?</label>
             <div class="input-group">
 		            <input type="radio" name="AmountLess" value="no" label="No" id="AmountLess" required>No
   			        <input type="radio" name="AmountLess" value="yes" label="Yes" id="AmountLess" required>Yes
-			      </div><br />
+                <!-- BEGIN AmountLess_error -->
+                <div class="label label-danger">{AmountLess_error}</div>
+                <!-- END AmountLess_error -->
+            </div><br />
             <label for="BudgetJustification">Budget Justification</label>
             <p><em>Please provide an itemized list of materials needed for the project. Include item description, catalog number, cost and vendor. (Max 1500 characters including spaces)</em></p>
             <div class="input-group col-md-10">
           	<textarea required
 		  		      name="BudgetJustification"
-				        value=""
 				        id="BudgetJustification"
 				        cols="60"
 				        rows="10"
                 maxlength="1700"
-                class="form-control"></textarea>
+                class="form-control">{BudgetJustification}</textarea>
+                <!-- BEGIN BudgetJustification_error -->
+                <div class="label label-danger">{BudgetJustification_error}</div>
+                <!-- END BudgetJustification_error -->
              </div><br />
              <label for="ResearchTitle">Project Title: </label>
              <p><em>(max 1000 characters including spaces)</em></p>
              <div class="input-group col-md-10">
              <textarea required
-              value=""
               name="ResearchTitle"
               id="ResearchTitle"
               cols="60"
               rows="3"
               maxlength="1200"
-              class="form-control"></textarea>
+              class="form-control">{ResearchTitle}</textarea>
+              <!-- BEGIN ResearchTitle_error -->
+              <div class="label label-danger">{ResearchTitle_error}</div>
+              <!-- END ResearchTitle_error -->
               </div><br />
               <label for="ResearchDescription">Project Description:</label>
               <p><em>What are the goals, objectives and specific aims of the project? Please review the design and methodology that will be employed. Justify how and why your proposed budget is needed to complete this project. If you are traveling to conduct research or collect data, please include your departure date and return date. (Max 3000 characters including spaces)</em></p>
-          	   <div class="input-group col-md-10">
-               <textarea required
+        	    <div class="input-group col-md-10">
+              <textarea required
               name="ResearchDescription"
-              value=""
               id="ResearchDescription"
               cols="60"
               rows="8"
               maxlength="3200"
-              class="form-control"></textarea>
-                </div><br />
-
+              class="form-control">{ResearchDescription}</textarea>
+              <!-- BEGIN ResearchDescription_error -->
+              <div class="label label-danger">{ResearchDescription_error}</div>
+              <!-- END ResearchDescription_error -->
+              </div><br />
               <div class='row'><hr></div>
               <p><strong>Compliance Questions: Please contact the Office of Research Protections if you have questions about the required Compliance Questions at <a ref="mailto:compliance@appstate.edu">compliance@appstate.edu</a> or 828-262-2692. The Office of Student Research cannot answer questions about this information. If compliance approval is not applicable to your research, please click no for each response.</strong></p>
               <label for="IRBApproved">If human research, is the project IRB approved?</label>
               <div class="input-group">
                 <input type="radio" name="IRBApproved" value="no" label="No" id="IRBApproved" required>No
                 <input type="radio" name="IRBApproved" value="yes" label="Yes" id="IRBApproved" required>Yes
-			        </div>
+                <!-- BEGIN IRBApproved_error -->
+                <div class="label label-danger">{IRBApproved_error}</div>
+                <!-- END IRBApproved_error -->
+              </div>
+
               <label for="IRBProtocol">If yes, what is the IRB protocol number:</label>
               <div class="input-group"><input type="text"
                 name="IRBProtocol"
-                value=""
+                value="{IRBProtocol}"
                 size="10"
                 maxlength="7"
                 class="form-control"><p class="help-block">XX-XXXX</p>
+                <!-- BEGIN IRBProtocol_error -->
+                <div class="label label-danger">{IRBProtocol_error}</div>
+                <!-- END IRBProtocol_error -->
               </div> <br />
               <label for="IACUCApproved">If vertebrate research, is the project IACUC approved?</label>
               <div class="input-group">
                 <input type="radio" name="IACUCApproved" value="no" label="No" id="IACUCApproved" required>No
                 <input type="radio" name="IACUCApproved" value="yes" label="Yes" id="IACUCApproved" required>Yes
-      			  </div>
+                <!-- BEGIN IACUCApproved_error -->
+                <div class="label label-danger">{IACUCApproved_error}</div>
+                <!-- END IACUCApproved_error -->
+              </div>
               <label for="IACUCProtocol">If yes, what is the IACUC protocol number:</label>
-                <div class="input-group"><input type="text" name="IACUCProtocol" value="" size="10" maxlength="5"
+                <div class="input-group">
+                  <input type="text" name="IACUCProtocol" value="{IACUCProtocol}" size="10" maxlength="5"
                       class="form-control"><p class="help-block">XX-XX</p>
+                      <!-- BEGIN IACUCProtocol_error -->
+                      <div class="label label-danger">{IACUCProtocol_error}</div>
+                      <!-- END IACUCProtocol_error -->
               </div> <br />
               <label for="IBCApproved">If recombinant DNA research, is the project IBC approved?</label>
               <div class="input-group"><input type="radio" name="IBCApproved" value="no" label="No" id="IBCApproved" required>
                 No
                 <input type="radio" name="IBCApproved" value="yes" label="Yes" id="IBCApproved" required>
                 Yes
+                <!-- BEGIN IBCApproved_error -->
+                <div class="label label-danger">{IBCApproved_error}</div>
+                <!-- END IBCApproved_error -->
       			  </div>
               <label for="IBCProtocol">If yes, what is the IBC protocol number:</label>
-              <div class="input-group"><input type="text" name="IBCProtocol" value="" size="10" maxlength="5" class="form-control">
+              <div class="input-group"><input type="text" name="IBCProtocol" value="{IBCProtocol}" size="10" maxlength="5" class="form-control">
                 <p class="help-block">XX-XX</p>
+                <!-- BEGIN IBCProtocol_error -->
+                <div class="label label-danger">{IBCProtocol_error}</div>
+                <!-- END IBCProtocol_error -->
               </div>
               <div class='row'><hr></div>
               <label for="Abroad">Does your research project require travel outside of the United States?</label>
@@ -251,6 +291,9 @@
                 No
         			  <input type="radio" name="Abroad" value="yes" label="Yes" id="Abroad" required>
                 Yes
+                <!-- BEGIN Abroad_error -->
+                <div class="label label-danger">{Abroad_error}</div>
+                <!-- END Abroad_error -->
               </div><br />
           		<label for="Visible">If funded do you give the OSR permission to post your "Project Description" on the OSR website under the "Current Projects" link?</label>
               <div class="input-group">
@@ -258,6 +301,9 @@
                 No
                 <input type="radio" name="Visible" value="yes" label="Yes" id="Visible" required>
                 Yes
+                <!-- BEGIN Visible_error -->
+                <div class="label label-danger">{Visible_error}</div>
+                <!-- END Visible_error -->
               </div>
         </div>
     </div>

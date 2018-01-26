@@ -7,7 +7,6 @@ abstract class GrantApplicationFactory{
 
     $majors = json_decode($majorsString);
 
-    $majorOptions[-1] = '<option>Select One</option>';
     foreach ($majors as $majorname) {
       if ($majorname == $chosenMajor)
         $majorOptions[] = "<option selected=true>$majorname</option>";
@@ -25,7 +24,6 @@ abstract class GrantApplicationFactory{
 
     $depts = json_decode($deptString);
 
-    $deptOptions[-1] = '<option>Select One</option>';
     foreach ($depts as $deptname) {
       if ($deptname == $chosenDept)
         $deptOptions[] = "<option selected=true>$deptname</option>";

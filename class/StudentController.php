@@ -32,12 +32,13 @@ class StudentController{
   }
 
   public function buildResearchForm(){
+    $arr = array();
     //Current_User::getusername();
     $userName = 'triplettml';
     $student = new UserFactory();
     $userInfo = $student->getUserData($userName);
     if ($userInfo){
-      $arr = $userInfo;
+      $arr += $userInfo;
       $arr['USERNAME'] = $userName;
     }else {
       //throw error- how?
@@ -45,7 +46,7 @@ class StudentController{
 
     $researchInfo = new ResearchGrantFactory;
     if (isset($_SESSION['formdata'])) {
-      $arr = $_SESSION['formdata'];
+      $arr += $_SESSION['formdata'];
       unset($_SESSION['formdata']);
       $arr['MAJORS'] = implode($researchInfo->GetMajors($arr['Major']));
       $arr['DEPARTMENTS'] = implode($researchInfo->GetDepartments($arr['FADepartment']));
@@ -63,8 +64,9 @@ class StudentController{
     $researchInfo = new ResearchGrantFactory;
     $results = $researchInfo->checkInput($postData);
     //Error in the data
+
     if ($results == false){
-      $this->buildResearchForm();
+      PHPWS_Core::reroute('index.php?module=osr&amp;cmd=researchform');
     } else {
       //$researchInfo->saveData();
       return \PHPWS_Template::process($arr, 'osr', 'researchpost.tpl');
