@@ -1,4 +1,11 @@
 <?php
+namespace osr\Controller;
+use osr\Factory\UserFactory;
+use osr\Factory\ResearchGrantFactory;
+use osr\Factory\TravelGrantFactory;
+use osr\Factory\InternationalGrantFactory;
+use osr\Factory\GraduateGrantFactory;
+
 class StudentController{
   public function get() {
     if (isset($_GET['cmd'])){
@@ -49,7 +56,7 @@ class StudentController{
       $arr += $_SESSION['formdata'];
       unset($_SESSION['formdata']);
       $arr['MAJORS'] = $researchInfo->GetMajors($arr['Major']);
-      $arr['DEPARTMENTS'] = $researchInfo->GetDepartments($arr['FADepartment']);
+      $arr['DEPARTMENTS'] = $researchInfo->GetDepartments($arr['FADept']);
       $arr['STATUSLIST'] = $researchInfo->GetStatus($arr['Status']);
       $arr['FACOLLEGELIST'] = $researchInfo->GetCollege($arr['FACollege']);
       $arr['HONORSRADIO'] = $researchInfo->BuildYesNoRadioButton('Honors', $arr['Honors']);
@@ -86,11 +93,18 @@ class StudentController{
     $results = $researchInfo->CheckInput($postData);
     //Error in the data
 
+
     if ($results == false){
-      PHPWS_Core::reroute('index.php?module=osr&amp;cmd=researchform');
+      \PHPWS_Core::reroute('index.php?module=osr&amp;cmd=researchform');
     } else {
-      //$researchInfo->saveData();
-      return \PHPWS_Template::process($arr, 'osr', 'researchpost.tpl');
+      //retrieve static info on logged in user
+      $userName = 'triplettml';
+      $student = new UserFactory();
+      $userInfo = $student->GetUserData($userName);
+
+      $results += $userInfo;
+      $researchInfo->saveData($results);
+      return \PHPWS_Template::process(array(), 'osr', 'researchpost.tpl');
     }
   }
 

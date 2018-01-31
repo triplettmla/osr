@@ -36,13 +36,13 @@ if (\Current_User::isLogged()) {
 
   switch ($role) {
     case 'osradmin':
-    $controller = new OSRAdminController;
+    $controller = new \osr\Controller\OSRAdminController;
     break;
     case 'student':
-    $controller = new StudentController;
+    $controller = new \osr\Controller\StudentController;
     break;
     case 'faculty':
-    $controller = new FacultyController;
+    $controller = new \osr\Controller\FacultyController;
     break;
   }
   \Layout::add($controller->get());

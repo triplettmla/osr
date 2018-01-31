@@ -1,4 +1,5 @@
 <? php
+namespace osr\Resource;
 class UndergraduateResearchAssistantship{
   //Student Applicant
   public $ID; // research grant application id (is this a codeword??)

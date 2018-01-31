@@ -8,15 +8,15 @@
   		<div class="panel-body">
         <label for="FirstName">First Name: </label>
         <div class="input-group">
-          <input type="text" readonly class="form-control-plaintext" id="FirstName" value="{FIRSTNAME}">
+          <input type="text" readonly class="form-control-plaintext" id="FirstName" value="{FirstName}">
         </div>
         <label for="LastName">Last Name: </label>
         <div class="input-group">
-          <input type="text" readonly class="form-control-plaintext" id="LastName" value="{LASTNAME}">
+          <input type="text" readonly class="form-control-plaintext" id="LastName" value="{LastName}">
         </div>
         <label for="Email">Email: </label>
         <div class="input-group">
-          <input type="text" readonly class="form-control-plaintext" id="Email" value="{EMAIL}">
+          <input type="text" readonly class="form-control-plaintext" id="Email" value="{Email}">
         </div>
         <!---<label for="FirstName">First Name:</label>
         <div class="input-group">
@@ -119,7 +119,7 @@
       			</div>
             <label for="FADepartment">Department/Program:</label>
             <div class="input-group">
-            <select name="FADepartment" class="form-control">
+            <select name="FADept" class="form-control">
               <option value="">Select One</option>
               {DEPARTMENTS}
           	</select>

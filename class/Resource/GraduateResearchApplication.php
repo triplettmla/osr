@@ -1,4 +1,5 @@
 <? php
+namespace osr\Resource;
 class ResearchGrantApplication{
   //Student Applicant
   public $ID; // research grant application id (is this a codeword??)
@@ -8,10 +9,7 @@ class ResearchGrantApplication{
   public $Email;
   public $Phone;
   public $ASUBox;
-  public $Status;
-  public $Major;
-  public $Honors;
-  public $GPA;
+  public $graduateProgram;
   public $BannerID;
 
   //Faculty Advisor Info
@@ -27,6 +25,14 @@ class ResearchGrantApplication{
   public $BudjectJustification;
   public $ResearchTitle;
   public $ResearchDescription;
+  public $projectType;
+  public $courseNumber;
+  public $thesisApporvedDate;
+  public $prospectusDate;
+  public $TotalCost;
+  public $otherfundingSources;
+  public $Results;
+  public $ApplyingFor;
   public $IRBApproved;
   public $IRBProtocol;
   public $IACUCApproved;
@@ -46,6 +52,7 @@ class ResearchGrantApplication{
   //Final Report
   public $Presented;
   public $MeetingDate;
+  public $CompletedDate;
   public $MeetingLocation;
   public $FinalReport;
   public $FinalReportDate;

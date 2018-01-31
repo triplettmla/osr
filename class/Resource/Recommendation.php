@@ -1,4 +1,5 @@
 <?php
+namespace osr\Resource;
 class Recommendation{
   public $ID;
 
@@ -32,7 +33,7 @@ class Recommendation{
   public $IBCProtocol;
   public $IACUCApproved;
   public $IACUCProtocol;
-  
+
 
 }
  ?>

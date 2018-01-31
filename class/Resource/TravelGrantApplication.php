@@ -1,4 +1,5 @@
 <?php
+namespace osr\Resource;
 class TravelGrantApplication{
   //Student Applicant Info
   public $ID;

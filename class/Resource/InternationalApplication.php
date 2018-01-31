@@ -1,14 +1,15 @@
-<? php
-class ResearchGrantApplication{
-  //Student Applicant
-  public $ID; // research grant application id (is this a codeword??)
+<?php
+namespace osr\Resource;
+class InternationalApplication{
+  public $ID;
   public $StudentID;
   public $FirstName;
   public $LastName;
   public $Email;
   public $Phone;
   public $ASUBox;
-  public $graduateProgram;
+  public $Status;
+  public $Major;
   public $BannerID;
 
   //Faculty Advisor Info
@@ -18,44 +19,34 @@ class ResearchGrantApplication{
   public $FADept;
   public $FAEmail;
 
-  //Research Grant details
+  //Grant Info
   public $Amount;
-  public $AmountLess;
-  public $BudjectJustification;
+  public $BudgetJustification;
   public $ResearchTitle;
   public $ResearchDescription;
-  public $projectType;
-  public $courseNumber;
-  public $thesisApporvedDate;
-  public $prospectusDate;
-  public $TotalCost;
-  public $otherfundingSources;
-  public $Results;
-  public $ApplyingFor;
   public $IRBApproved;
   public $IRBProtocol;
   public $IACUCApproved;
   public $IACUCProtocol;
-  public $IBCApproved;
-  public $IBCProtocol;
+  public $IRBApproved;
+  public $IRBProtocol;
   public $ApplicationDate;
   public $priorFunding;
-  public $Abroad;
-  public $Visible;
 
-  //Research grant award or reject
+
+  //Awarded/Rejected Info
   public $Awarded;
   public $AwardAmount;
   public $AwardDate;
 
-  //Final Report
+  //Final Report Info
+  public $CompletedDate;
   public $Presented;
   public $MeetingDate;
-  public $CompletedDate;
   public $MeetingLocation;
   public $FinalReport;
   public $FinalReportDate;
-
+  public $DepartureDate;
+  public $ReturnDate;
 }
-
  ?>

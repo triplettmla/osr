@@ -1,4 +1,6 @@
 <?php
+namespace osr\Controller;
+
 class OSRAdminController{
   public function get() {
     if (isset($_GET['cmd'])){

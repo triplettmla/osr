@@ -1,4 +1,5 @@
 <?php
+namespace osr\Factory;
 abstract class GrantApplicationFactory{
   public function GetMajors($chosenMajor = ''){
     //pull majors from file to build form
@@ -44,15 +45,15 @@ abstract class GrantApplicationFactory{
   }
 
   public function BuildYesNoRadioButton($radioName, $chosenButton = ''){
-    if ($chosenButton == 'no'){
-      $radioString = '<input type="radio" id="'. $radioName . '" name="'. $radioName . '" value="no" label="No" checked required>No ' .
-                     '<input type="radio" id="' . $radioName . '" name="'. $radioName . '" value="yes" label="Yes" required>Yes';
-    } elseif ($chosenButton == 'yes'){
-      $radioString = '<input type="radio" id="'. $radioName . '" name="'. $radioName . '" value="no" label="No" required>No ' .
-                     '<input type="radio" id="' . $radioName . '" name="'. $radioName . '" value="yes" label="Yes" checked required>Yes';
+    if ($chosenButton == '0'){
+      $radioString = '<input type="radio" id="'. $radioName . '" name="'. $radioName . '" value="0" label="No" checked required>No ' .
+                     '<input type="radio" id="' . $radioName . '" name="'. $radioName . '" value="1" label="Yes" required>Yes';
+    } elseif ($chosenButton == '1'){
+      $radioString = '<input type="radio" id="'. $radioName . '" name="'. $radioName . '" value="0" label="No" required>No ' .
+                     '<input type="radio" id="' . $radioName . '" name="'. $radioName . '" value="1" label="Yes" checked required>Yes';
     } else {
-      $radioString = '<input type="radio" id="'. $radioName . '" name="'. $radioName . '" value="no" label="No" required>No ' .
-                     '<input type="radio" id="' . $radioName . '" name="'. $radioName . '" value="yes" label="Yes" required>Yes';
+      $radioString = '<input type="radio" id="'. $radioName . '" name="'. $radioName . '" value="0" label="No" required>No ' .
+                     '<input type="radio" id="' . $radioName . '" name="'. $radioName . '" value="1" label="Yes" required>Yes';
     }
     return $radioString;
   }

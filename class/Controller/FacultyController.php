@@ -1,4 +1,8 @@
 <?php
+namespace osr\Controller;
+use osr\Factory\RecommendationFactory;
+use osr\Factory\URAGrantFactory;
+
 class FacultyController{
   public function get() {
     if (isset($_GET['cmd'])){
