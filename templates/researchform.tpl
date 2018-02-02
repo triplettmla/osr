@@ -150,7 +150,7 @@
             <div class="label label-danger">{Amount_error}</div>
             <!-- END Amount_error -->
             </div><br />
-            <label for="PriorFunding">Have you received prior funding?</label>
+            <label for="priorFunding">Have you received prior funding?</label>
             <div class="input-group">
                 {PRIORFUNDINGRADIO}
                 <!-- BEGIN PriorFunding_error -->

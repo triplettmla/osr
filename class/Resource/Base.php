@@ -1,5 +1,8 @@
 <?php
-
+/**
+ *
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
+ */
 namespace osr\Resource;
 use \phpws2\Database;
 class Base extends \phpws2\Resource

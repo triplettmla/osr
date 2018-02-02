@@ -1,6 +1,8 @@
 <?php
-//namespace phpws2\Database;
+
 namespace osr\Factory;
+use osr\Resource\ResearchGrantApplication;
+use phpws2\ResourceFactory;
 
 class ResearchGrantFactory extends GrantApplicationFactory{
   public function CheckInput($inputData){
@@ -96,7 +98,7 @@ class ResearchGrantFactory extends GrantApplicationFactory{
 
   public function SaveData($results){
 
-    $db = \phpws2\Database::getDB();
+    /*$db = \phpws2\Database::getDB();
 
     // this instantiates a new database object that contains all my connection stuff
     // now I am am going to create a table
@@ -109,7 +111,7 @@ class ResearchGrantFactory extends GrantApplicationFactory{
     //$result = $db->select();
     // and I will get an array of values from the modules table
     // if I want to limit by a column
-    //$tbl->addFieldConditional('title', 'access');*/
+    //$tbl->addFieldConditional('title', 'access');
 
     $tbl->addValue('FirstName', $results['FirstName']);
     $tbl->addValue('LastName', $results['LastName']);
@@ -127,7 +129,7 @@ class ResearchGrantFactory extends GrantApplicationFactory{
     $tbl->addValue('FACollege', $results['FACollege']);
     $tbl->addValue('FADept', $results['FADept']);
     $tbl->addValue('Amount', $results['Amount']);
-    $tbl->addValue('PriorFunding', $results['PriorFunding']);
+    $tbl->addValue('priorFunding', $results['priorFunding']);
     $tbl->addValue('AmountLess', $results['AmountLess']);
     $tbl->addValue('BudgetJustification', $results['BudgetJustification']);
     $tbl->addValue('ResearchTitle', $results['ResearchTitle']);
@@ -144,6 +146,41 @@ class ResearchGrantFactory extends GrantApplicationFactory{
     $tbl->addValue('ApplicationDate', date("Y-m-d H:i:s", time()));
 
     $tbl->insert();
+    */
+    var_dump('In savedata');
+    $app = new ResearchGrantApplication;
+
+    $app->FirstName = $results['FirstName'];
+    $app->LastName = $results['LastName'];
+    $app->StudentID = $results['StudentID'];
+    $app->BannerID = $results['BannerID'];
+    $app->Email = $results['Email'];
+    $app->GPA = $results['GPA'];
+    $app->Phone = $results['Phone'];
+    $app->Status = $results['Status'];
+    $app->Major = $results['Major'];
+    $app->Honors = $results['Honors'];
+    $app->FAFirstName = $results['FAFirstName'];
+    $app->FALastName = $results['FALastName'];
+    $app->FAEmail = $results['FAEmail'];
+    $app->FACollege = $results['FACollege'];
+    $app->FADept = $results['FADept'];
+    $app->Amount = $results['Amount'];
+    $app->priorFunding = $results['priorFunding'];
+    $app->AmountLess = $results['AmountLess'];
+    $app->BudgetJustification = $results['BudgetJustification'];
+    $app->ResearchTitle = $results['ResearchTitle'];
+    $app->ResearchDescription = $results['ResearchDescription'];
+    $app->IRBApproved = $results['IRBApproved'];
+    $app->IRBProtocol = $results['IRBProtocol'];
+    $app->IACUCApproved = $results['IACUCApproved'];
+    $app->IACUCProtocol = $results['IACUCProtocol'];
+    $app->IBCApproved = $results['IBCApproved'];
+    $app->IBCProtocol = $results['IBCProtocol'];
+    $app->Abroad = $results['Abroad'];
+    $app->Visible = $results['Visible'];
+    $app->ApplicationDate = time();
+    ResourceFactory::saveResource($app);
 
     return true;
   }

@@ -1,4 +1,4 @@
-<? php
+<?php
 namespace osr\Resource;
 class ResearchGrantApplication{
   //Student Applicant

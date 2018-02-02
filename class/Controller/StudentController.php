@@ -42,14 +42,10 @@ class StudentController{
     $arr = array();
     //Current_User::getusername();
     $userName = 'triplettml';
-    $student = new UserFactory();
+    $student = new UserFactory;
     $userInfo = $student->GetUserData($userName);
-    if ($userInfo){
-      $arr += $userInfo;
-      $arr['USERNAME'] = $userName;
-    }else {
-      //throw error- how?
-    }
+
+    $arr += $userInfo;
 
     $researchInfo = new ResearchGrantFactory;
     if (isset($_SESSION['formdata'])) {
@@ -60,7 +56,7 @@ class StudentController{
       $arr['STATUSLIST'] = $researchInfo->GetStatus($arr['Status']);
       $arr['FACOLLEGELIST'] = $researchInfo->GetCollege($arr['FACollege']);
       $arr['HONORSRADIO'] = $researchInfo->BuildYesNoRadioButton('Honors', $arr['Honors']);
-      $arr['PRIORFUNDINGRADIO'] = $researchInfo->BuildYesNoRadioButton('PriorFunding', $arr['PriorFunding']);
+      $arr['PRIORFUNDINGRADIO'] = $researchInfo->BuildYesNoRadioButton('PriorFunding', $arr['priorFunding']);
       $arr['AMOUNTLESSRADIO'] = $researchInfo->BuildYesNoRadioButton('AmountLess', $arr['AmountLess']);
       $arr['IRBAPPROVEDRADIO'] = $researchInfo->BuildYesNoRadioButton('IRBApproved', $arr['IRBApproved']);
       $arr['IACUCAPPROVEDRADIO'] = $researchInfo->BuildYesNoRadioButton('IACUCApproved', $arr['IACUCApproved']);
@@ -74,7 +70,7 @@ class StudentController{
       $arr['STATUSLIST'] = $researchInfo->GetStatus();
       $arr['FACOLLEGELIST'] = $researchInfo->GetCollege();
       $arr['HONORSRADIO'] = $researchInfo->BuildYesNoRadioButton('Honors');
-      $arr['PRIORFUNDINGRADIO'] = $researchInfo->BuildYesNoRadioButton('PriorFunding');
+      $arr['PRIORFUNDINGRADIO'] = $researchInfo->BuildYesNoRadioButton('priorFunding');
       $arr['AMOUNTLESSRADIO'] = $researchInfo->BuildYesNoRadioButton('AmountLess');
       $arr['IRBAPPROVEDRADIO'] = $researchInfo->BuildYesNoRadioButton('IRBApproved');
       $arr['IACUCAPPROVEDRADIO'] = $researchInfo->BuildYesNoRadioButton('IACUCApproved');
@@ -91,15 +87,15 @@ class StudentController{
     $postData = $_POST;
     $researchInfo = new ResearchGrantFactory;
     $results = $researchInfo->CheckInput($postData);
-    //Error in the data
 
 
+    //Error in the data? Then reload form
     if ($results == false){
       \PHPWS_Core::reroute('index.php?module=osr&amp;cmd=researchform');
     } else {
       //retrieve static info on logged in user
       $userName = 'triplettml';
-      $student = new UserFactory();
+      $student = new UserFactory;
       $userInfo = $student->GetUserData($userName);
 
       $results += $userInfo;
