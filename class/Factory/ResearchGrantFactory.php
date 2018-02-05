@@ -88,12 +88,42 @@ class ResearchGrantFactory extends GrantApplicationFactory{
     }
     if (isset($errMsg)){
       $_SESSION['formdata'] = array_merge($postData, $errMsg);
-      var_dump($_SESSION['formdata']);
-      exit;
       return false;
     }else{
       return $inputData;
     }
+  }
+
+  public function BuildForm($isError, $arr){
+    if ($isError == TRUE){
+      $arr['MAJORS'] = $this->GetMajors($arr['Major']);
+      $arr['DEPARTMENTS'] = $this->GetDepartments($arr['FADept']);
+      $arr['STATUSLIST'] = $this->GetStatus($arr['Status']);
+      $arr['FACOLLEGELIST'] = $this->GetCollege($arr['FACollege']);
+      $arr['HONORSRADIO'] = $this->BuildYesNoRadioButton('Honors', $arr['Honors']);
+      $arr['PRIORFUNDINGRADIO'] = $this->BuildYesNoRadioButton('priorFunding', $arr['priorFunding']);
+      $arr['AMOUNTLESSRADIO'] = $this->BuildYesNoRadioButton('AmountLess', $arr['AmountLess']);
+      $arr['IRBAPPROVEDRADIO'] = $this->BuildYesNoRadioButton('IRBApproved', $arr['IRBApproved']);
+      $arr['IACUCAPPROVEDRADIO'] = $this->BuildYesNoRadioButton('IACUCApproved', $arr['IACUCApproved']);
+      $arr['IBCAPPROVEDRADIO'] = $this->BuildYesNoRadioButton('IBCApproved', $arr['IBCApproved']);
+      $arr['ABROADRADIO'] = $this->BuildYesNoRadioButton('Abroad', $arr['Abroad']);
+      $arr['VISIBLERADIO'] = $this->BuildYesNoRadioButton('Visible', $arr['Visible']);
+      $arr['ERRORONPAGE'] = 'ERROR: Please correct the fields and resubmit.';
+    } else {
+      $arr['MAJORS'] = $this->GetMajors();
+      $arr['DEPARTMENTS'] = $this->GetDepartments();
+      $arr['STATUSLIST'] = $this->GetStatus();
+      $arr['FACOLLEGELIST'] = $this->GetCollege();
+      $arr['HONORSRADIO'] = $this->BuildYesNoRadioButton('Honors');
+      $arr['PRIORFUNDINGRADIO'] = $this->BuildYesNoRadioButton('priorFunding');
+      $arr['AMOUNTLESSRADIO'] = $this->BuildYesNoRadioButton('AmountLess');
+      $arr['IRBAPPROVEDRADIO'] = $this->BuildYesNoRadioButton('IRBApproved');
+      $arr['IACUCAPPROVEDRADIO'] = $this->BuildYesNoRadioButton('IACUCApproved');
+      $arr['IBCAPPROVEDRADIO'] = $this->BuildYesNoRadioButton('IBCApproved');
+      $arr['ABROADRADIO'] = $this->BuildYesNoRadioButton('Abroad');
+      $arr['VISIBLERADIO'] = $this->BuildYesNoRadioButton('Visible');
+    }
+    return $arr;
   }
 
   public function SaveData($results){
@@ -147,7 +177,6 @@ class ResearchGrantFactory extends GrantApplicationFactory{
 
     $tbl->insert();
     */
-    var_dump('In savedata');
     $app = new ResearchGrantApplication;
 
     $app->FirstName = $results['FirstName'];
@@ -179,7 +208,7 @@ class ResearchGrantFactory extends GrantApplicationFactory{
     $app->IBCProtocol = $results['IBCProtocol'];
     $app->Abroad = $results['Abroad'];
     $app->Visible = $results['Visible'];
-    $app->ApplicationDate = time();
+    $app->ApplicationDate = date("Y-m-d H:i:s", time());
     ResourceFactory::saveResource($app);
 
     return true;

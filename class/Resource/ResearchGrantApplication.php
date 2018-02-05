@@ -54,7 +54,7 @@ class ResearchGrantApplication extends Base{
   protected $FinalReport;
   protected $FinalReportDate;
 
-  protected $table = 'research_apps';
+  protected $table = 'osr_research_apps';
 
   public function __construct()
   {
@@ -92,17 +92,17 @@ class ResearchGrantApplication extends Base{
       $this->priorFunding = new Variable\BooleanVar(null, 'priorFunding');
       $this->Abroad = new Variable\BooleanVar(null, 'Abroad');
       $this->Visible = new Variable\BooleanVar(null, 'Visible');
-      $this->ApplicationDate = new Variable\DateTime(null, 'ApplicationDate');
+      $this->ApplicationDate = new Variable\StringVar(null, 'ApplicationDate');
 
       /*$this->Awarded = new Variable\StringVar(null, 'Awarded');
       $this->AwardAmount = new Variable\StringVar(null, 'AwardAmount');
-      $this->AwardDate = new Variable\DateTime(null, 'AwardDate');
+      $this->AwardDate = new Variable\StringVar(null, 'AwardDate');
 
       $this->Presented = new Variable\BooleanVar(null, 'Presented');
-      $this->MeetingDate = new Variable\DateTime(null, 'MeetingDate');
+      $this->MeetingDate = new Variable\StringVar(null, 'MeetingDate');
       $this->MeetingLocation = new Variable\StringVar(null, 'MeetingLocation');
       $this->FinalReport = new Variable\StringVar(null, 'FinalReport');
-      $this->FinalReportDate = new Variable\DateTime(null, 'FinalReportDate');*/
+      $this->FinalReportDate = new Variable\StringVar(null, 'FinalReportDate');*/
 
   }
 
