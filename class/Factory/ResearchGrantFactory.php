@@ -3,6 +3,7 @@
 namespace osr\Factory;
 use osr\Resource\ResearchGrantApplication;
 use phpws2\ResourceFactory;
+use phpws2\Database;
 
 class ResearchGrantFactory extends GrantApplicationFactory{
   public function CheckInput($inputData){
@@ -54,17 +55,17 @@ class ResearchGrantFactory extends GrantApplicationFactory{
           }
         break;
         case 'IRBProtocol':
-          if ($inputData['IRBApproved'] == 'yes' and empty($inputData[$k])){
+          if ($inputData['$k'] == 'yes' and empty($inputData[$k])){
             $errMsg[$k . '_error'] = "* IRB Protocol is required if IRB Approved.";
           }
         break;
         case 'IACUCProtocol':
-          if ($inputData['IACUCApproved'] == 'yes' and empty($inputData[$k])){
+          if ($inputData['$k'] == 'yes' and empty($inputData[$k])){
             $errMsg[$k . '_error'] = "* IACUC Protocol is required if IACUC Approved.";
           }
         break;
         case 'IBCProtocol':
-          if ($inputData['IBCApproved'] == 'yes' and empty($inputData[$k])){
+          if ($inputData['$k'] == 'yes' and empty($inputData[$k])){
             $errMsg[$k . '_error'] = "* IBC Protocol is required if IBC Approved.";
           }
         break;
@@ -215,6 +216,24 @@ class ResearchGrantFactory extends GrantApplicationFactory{
   }
   public function EmailConfirmation(){
     return true;
+  }
+
+  public function RetrievePending(){
+    $db = Database::getDB();
+    $tbl = $db->addTable('osr_research_apps');
+    $tbl->addFieldConditional('Awarded', null, 'is');
+    $results = $db->select();
+
+    $pendingTable = '';
+    if (!empty($results)){
+      foreach($results as $k => $v){
+        $pendingTable .= '<tr><td>' . $results[$k]['FirstName'] . ' ' . $results[$k]['LastName'] . '</td>' .
+            '<td>' . $results[$k]['FAFirstName'] . ' ' . $results[$k]['FALastName'] . '</td>' .
+            '<td>' . $results[$k]['ResearchTitle'] . '</td>' .
+            '<td>' . $results[$k]['ApplicationDate'] . '</td></tr>';
+      }
+    }
+    return $pendingTable;
   }
 
 }

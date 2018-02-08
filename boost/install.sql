@@ -1,8 +1,65 @@
 BEGIN;
--- DROP TABLE IF EXISTS `abstracts`;
 
+CREATE TABLE IF NOT EXISTS `osr_research_apps` (
+  `ID` int(11) NOT NULL,
+  `StudentID` varchar(30) DEFAULT NULL,
+  `FirstName` varchar(255) DEFAULT NULL,
+  `LastName` varchar(255) DEFAULT NULL,
+  `Email` varchar(255) DEFAULT NULL,
+  `Phone` varchar(255) DEFAULT NULL,
+  `ASUBox` varchar(255) DEFAULT NULL,
+  `Status` varchar(255) DEFAULT NULL,
+  `Major` varchar(255) DEFAULT NULL,
+  `Athlete` varchar(255) DEFAULT NULL,
+  `Sport` varchar(255) DEFAULT NULL,
+  `FAFirstName` varchar(255) DEFAULT NULL,
+  `FALastName` varchar(255) DEFAULT NULL,
+  `FACollege` varchar(255) DEFAULT NULL,
+  `FADept` varchar(255) DEFAULT NULL,
+  `FAEmail` varchar(255) DEFAULT NULL,
+  `Amount` int(11) DEFAULT NULL,
+  `AmountLess` tinyint(1) DEFAULT NULL,
+  `BudgetJustification` text DEFAULT NULL,
+  `ResearchTitle` text DEFAULT NULL,
+  `ResearchDescription` text DEFAULT NULL,
+  `IRBApproved` tinyint(1) DEFAULT NULL,
+  `IRBDate` varchar(255) DEFAULT NULL,
+  `IACUCApproved` tinyint(1) DEFAULT NULL,
+  `IACUCDate` varchar(255) DEFAULT NULL,
+  `ApplicationDate` datetime DEFAULT NULL,
+  `Awarded` tinyint(1) DEFAULT NULL,
+  `AwardAmount` int(11) DEFAULT NULL,
+  `AwardDate` datetime DEFAULT NULL,
+  `CompletedDate` datetime(6) DEFAULT NULL,
+  `Presented` tinyint(1) DEFAULT NULL,
+  `MeetingDate` datetime DEFAULT NULL,
+  `MeetingLocation` varchar(255) DEFAULT NULL,
+  `FinalReport` text DEFAULT NULL,
+  `FinalReportDate` datetime DEFAULT NULL,
+  `priorFunding` tinyint(1) DEFAULT NULL,
+  `Honors` tinyint(1) DEFAULT NULL,
+  `Abroad` tinyint(1) DEFAULT NULL,
+  `GPA` decimal(5,3) DEFAULT NULL,
+  `Visible` tinyint(1) DEFAULT NULL,
+  `BannerID` varchar(30) DEFAULT NULL,
+  `IRBProtocol` varchar(255) DEFAULT NULL,
+  `IACUCProtocol` varchar(255) DEFAULT NULL,
+  `IBCProtocol` varchar(255) DEFAULT NULL,
+  `IBCApproved` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `abstracts` (
+--
+-- Table structure for table `osr_timeline`
+--
+
+CREATE TABLE IF NOT EXISTS `osr_timeline` (
+  `GrantName` varchar(255) NOT NULL,
+  `OpenDate` timestamp NULL DEFAULT NULL,
+  `CloseDate` timestamp NULL DEFAULT NULL,
+  `NotificationDate` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*CREATE TABLE `abstracts` (
   `StudentID` varchar(30) NOT NULL DEFAULT '',
   `FirstName` varchar(50) DEFAULT NULL,
   `LastName` varchar(50) DEFAULT NULL,
@@ -435,6 +492,6 @@ CREATE TABLE `ura_apps` (
   `IACUCProtocol` varchar(255) DEFAULT NULL,
   `IRBProtocol` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-)
+)*/
 
 COMMIT;
