@@ -2,7 +2,7 @@
 <!-- BEGIN ERRORONPAGE-->
 <div class="label label-danger">{ERRORONPAGE}</div>
 <!-- END ERRORONPAGE -->
-<form name="ResearchApply" id="form" action="index.php?module=osr&cmd=researchpost" method="post">
+<form name="ResearchApply" id="form" action="index.php?module=osr&cmd=researcheditpost" method="post">
   <div class="panel panel-default">
   	<div class="panel-heading">About You</div>
   		<div class="panel-body">
@@ -273,9 +273,36 @@
               </div>
         </div>
     </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">Make the Award</div>
+       <div class="panel-body">
+           <label for="Awarded">Award:</label>
+           <div class="input-group">
+             <input type="radio" name="Awarded" value="Yes" />Yes
+             <input type="radio" name="Awarded" value="No" />No
+             <input type="radio" name="Awarded" value="Withdrawn" />Withdrawn
+           </div><br />
+           <label for="AwardAmount">Amount Awarded:</label>
+           <div class="input-group col-md-2">
+           <span class="input-group-addon">$</span>
+             <input type="number"
+               class="form-control"
+               name="AwardAmount"
+               value="{AwardAmount}"
+               size="10"
+               maxlength="4"
+               min="1"
+               max="500"
+               required="yes"
+               id="AwardAmount">
+           <span class="input-group-addon">.00</span>
+           <!-- BEGIN AwardAmount_error -->
+           <div class="label label-danger">{AwardAmount_error}</div>
+           <!-- END AwardAmount_error -->
+           </div><br />
+         </div>
+      </div>
 
     <input type="submit" name="Submit" value="Submit" validate="submitonce" class="btn btn-default">
-		<input type="reset" name="Reset" value="Clear" class="btn btn-default">
-
 
 </form>

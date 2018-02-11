@@ -55,17 +55,17 @@ class ResearchGrantFactory extends GrantApplicationFactory{
           }
         break;
         case 'IRBProtocol':
-          if ($inputData['$k'] == 'yes' and empty($inputData[$k])){
+          if ($inputData[$k] == 'yes' and empty($inputData[$k])){
             $errMsg[$k . '_error'] = "* IRB Protocol is required if IRB Approved.";
           }
         break;
         case 'IACUCProtocol':
-          if ($inputData['$k'] == 'yes' and empty($inputData[$k])){
+          if ($inputData[$k] == 'yes' and empty($inputData[$k])){
             $errMsg[$k . '_error'] = "* IACUC Protocol is required if IACUC Approved.";
           }
         break;
         case 'IBCProtocol':
-          if ($inputData['$k'] == 'yes' and empty($inputData[$k])){
+          if ($inputData[$k] == 'yes' and empty($inputData[$k])){
             $errMsg[$k . '_error'] = "* IBC Protocol is required if IBC Approved.";
           }
         break;
@@ -95,8 +95,8 @@ class ResearchGrantFactory extends GrantApplicationFactory{
     }
   }
 
-  public function BuildForm($isError, $arr){
-    if ($isError == TRUE){
+  public function BuildForm($loadChoices, $arr){
+    if ($loadChoices == TRUE){
       $arr['MAJORS'] = $this->GetMajors($arr['Major']);
       $arr['DEPARTMENTS'] = $this->GetDepartments($arr['FADept']);
       $arr['STATUSLIST'] = $this->GetStatus($arr['Status']);
@@ -109,7 +109,7 @@ class ResearchGrantFactory extends GrantApplicationFactory{
       $arr['IBCAPPROVEDRADIO'] = $this->BuildYesNoRadioButton('IBCApproved', $arr['IBCApproved']);
       $arr['ABROADRADIO'] = $this->BuildYesNoRadioButton('Abroad', $arr['Abroad']);
       $arr['VISIBLERADIO'] = $this->BuildYesNoRadioButton('Visible', $arr['Visible']);
-      $arr['ERRORONPAGE'] = 'ERROR: Please correct the fields and resubmit.';
+
     } else {
       $arr['MAJORS'] = $this->GetMajors();
       $arr['DEPARTMENTS'] = $this->GetDepartments();
@@ -131,18 +131,7 @@ class ResearchGrantFactory extends GrantApplicationFactory{
 
     /*$db = \phpws2\Database::getDB();
 
-    // this instantiates a new database object that contains all my connection stuff
-    // now I am am going to create a table
-
-    $tbl = $db->addTable('research_apps');
-
-    // This ADDS a table to the database object. I catch the table object so
-    // I can manipulate it
-    // at this point I can call
-    //$result = $db->select();
-    // and I will get an array of values from the modules table
-    // if I want to limit by a column
-    //$tbl->addFieldConditional('title', 'access');
+    $tbl = $db->addTable('osr_research_apps');
 
     $tbl->addValue('FirstName', $results['FirstName']);
     $tbl->addValue('LastName', $results['LastName']);
@@ -176,8 +165,8 @@ class ResearchGrantFactory extends GrantApplicationFactory{
     //ATTENTION: convert to timestamp in database
     $tbl->addValue('ApplicationDate', date("Y-m-d H:i:s", time()));
 
-    $tbl->insert();
-    */
+    $tbl->insert();*/
+
     $app = new ResearchGrantApplication;
 
     $app->FirstName = $results['FirstName'];
@@ -210,6 +199,7 @@ class ResearchGrantFactory extends GrantApplicationFactory{
     $app->Abroad = $results['Abroad'];
     $app->Visible = $results['Visible'];
     $app->ApplicationDate = date("Y-m-d H:i:s", time());
+
     ResourceFactory::saveResource($app);
 
     return true;
@@ -218,23 +208,57 @@ class ResearchGrantFactory extends GrantApplicationFactory{
     return true;
   }
 
-  public function RetrievePending(){
+  public function RetrieveList($awarded = false){
+
     $db = Database::getDB();
     $tbl = $db->addTable('osr_research_apps');
-    $tbl->addFieldConditional('Awarded', null, 'is');
+    if ($awarded){
+      $tbl->addFieldConditional('Awarded', null, 'is not');
+    }else {
+      $tbl->addFieldConditional('Awarded', null, 'is');
+    }
+    //ATTENTTION: Add condition for this fiscal year
     $results = $db->select();
 
-    $pendingTable = '';
+    $grantList = '';
     if (!empty($results)){
       foreach($results as $k => $v){
-        $pendingTable .= '<tr><td>' . $results[$k]['FirstName'] . ' ' . $results[$k]['LastName'] . '</td>' .
+        $grantList .= '<tr><td>' . $results[$k]['FirstName'] . ' ' . $results[$k]['LastName'] . '</td>' .
             '<td>' . $results[$k]['FAFirstName'] . ' ' . $results[$k]['FALastName'] . '</td>' .
             '<td>' . $results[$k]['ResearchTitle'] . '</td>' .
-            '<td>' . $results[$k]['ApplicationDate'] . '</td></tr>';
+            '<td>' . $results[$k]['ApplicationDate'] . '</td>' .
+            '<td><a href="index.php?module=osr&amp;cmd=researchedit&amp;id=' . $results[$k]['ID'] .
+            '">Edit</a></td><td><a href="index.php?module=osr&amp;cmd=researchdelete&amp;id=' .
+            $results[$k]['ID'] . '">Delete</a></td>';
+        if ($awarded = TRUE){
+          if (empty($results[$k]['FinalReport']))
+            $grantList .= '<td></td></tr>';
+          else {
+            $grantList .= '<td><a href="index.php?module=osr&amp;cmd=researchfinal&amp;id=' .
+                $results[$k]['ID'] . '">Final Report</a></td></tr>';
+          }
+        }else {
+          $grantList = '</tr>';
+        }
       }
     }
-    return $pendingTable;
+    return $grantList;
   }
+  public function RetrieveDetail($grantID) {
+    if (!is_numeric($grantID)){
+      //ATTENTION: Throw an error
+    }
+    $db = Database::getDB();
+    $tbl = $db->addTable('osr_research_apps');
+    $tbl->addFieldConditional('ID', $grantID, '=');
 
+    $results = $db->select();
+    if (!empty($results))
+      return $results[0];
+    else {
+      return false;
+    }
+
+  }
 }
- ?>
+?>

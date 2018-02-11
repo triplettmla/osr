@@ -20,6 +20,9 @@ class OSRAdminController{
         case 'osrresearchlist':
           return $this->BuildOSRResearchList();
         break;
+        case 'researchedit':
+          return $this->BuildOSRResearchEdit();
+        break;
         case 'osrtravellist':
         break;
         case 'internationallist';
@@ -32,12 +35,23 @@ class OSRAdminController{
       return \PHPWS_Template::process(array(), 'osr', 'osradminmenu.tpl');
     }
   }
+
   public function BuildOSRResearchList(){
     $researchGrants = new ResearchGrantFactory;
-    $arr['PENDINGGRANTS'] = $researchGrants->RetrievePending();
+    $arr['PENDINGGRANTS'] = $researchGrants->RetrieveList(false);
     $arr['PENDINGCOUNT'] = count($arr['PENDINGGRANTS']);
-    //$arr['COMPLETEGRANTS'] = $researchGrants->RetrieveComplete();
+    $arr['COMPLETEGRANTS'] = $researchGrants->RetrieveList(true);
+    $arr['COMPLETECOUNT'] = count($arr['COMPLETEGRANTS']);
     return \PHPWS_Template::process($arr, 'osr', 'osrresearchlist.tpl');
+  }
+
+  public function BuildOSRResearchEdit(){
+    $researchGrant = new ResearchGrantFactory;
+    $arr = $researchGrant->RetrieveDetail($_GET['id']);
+    
+    $arr += $researchGrant->BuildForm(TRUE, $arr);
+    return \PHPWS_Template::process($arr, 'osr', 'osrresearchedit.tpl');
+
   }
 
 }

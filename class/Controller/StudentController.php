@@ -53,6 +53,7 @@ class StudentController{
       $arr += $_SESSION['formdata'];
       unset($_SESSION['formdata']);
       $arr += $researchInfo->BuildForm(TRUE, $arr);
+      $arr['ERRORONPAGE'] = 'ERROR: Please correct the fields and resubmit.';
     }else{
       $arr += $researchInfo->BuildForm(FALSE, $arr);
     }
