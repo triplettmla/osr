@@ -6,6 +6,7 @@ use phpws2\ResourceFactory;
 use phpws2\Database;
 
 class ResearchGrantFactory extends GrantApplicationFactory{
+  protected $table = 'osr_research_apps';
   public function CheckInput($inputData){
     //Save post data as entered by student
     $postData = $inputData;
@@ -131,7 +132,7 @@ class ResearchGrantFactory extends GrantApplicationFactory{
 
     /*$db = \phpws2\Database::getDB();
 
-    $tbl = $db->addTable('osr_research_apps');
+    $tbl = $db->addTable($table);
 
     $tbl->addValue('FirstName', $results['FirstName']);
     $tbl->addValue('LastName', $results['LastName']);
@@ -168,13 +169,27 @@ class ResearchGrantFactory extends GrantApplicationFactory{
     $tbl->insert();*/
 
     $app = new ResearchGrantApplication;
+    $app = $this->LoadProperties($app, $results);
+    $app->ApplicationDate = date("Y-m-d H:i:s", time());
 
-    $app->FirstName = $results['FirstName'];
-    $app->LastName = $results['LastName'];
-    $app->StudentID = $results['StudentID'];
-    $app->BannerID = $results['BannerID'];
-    $app->Email = $results['Email'];
-    $app->GPA = $results['GPA'];
+    ResourceFactory::saveResource($app);
+
+    return true;
+  }
+
+  public function LoadProperties(ResearchGrantApplication $app, $results){
+    if (isset($results['FirstName']))
+      $app->FirstName = $results['FirstName'];
+    if (isset($results['LastName']))
+      $app->LastName = $results['LastName'];
+    if (isset($results['StudentID']))
+      $app->StudentID = $results['StudentID'];
+    if (isset($results['BannerID']))
+      $app->BannerID = $results['BannerID'];
+    if (isset($results['Email']))
+      $app->Email = $results['Email'];
+    if (isset($results['GPA']))
+      $app->GPA = $results['GPA'];
     $app->Phone = $results['Phone'];
     $app->Status = $results['Status'];
     $app->Major = $results['Major'];
@@ -198,12 +213,9 @@ class ResearchGrantFactory extends GrantApplicationFactory{
     $app->IBCProtocol = $results['IBCProtocol'];
     $app->Abroad = $results['Abroad'];
     $app->Visible = $results['Visible'];
-    $app->ApplicationDate = date("Y-m-d H:i:s", time());
-
-    ResourceFactory::saveResource($app);
-
-    return true;
+    return $app;
   }
+
   public function EmailConfirmation(){
     return true;
   }
@@ -211,7 +223,7 @@ class ResearchGrantFactory extends GrantApplicationFactory{
   public function RetrieveList($awarded = false){
 
     $db = Database::getDB();
-    $tbl = $db->addTable('osr_research_apps');
+    $tbl = $db->addTable($this->table);
     if ($awarded){
       $tbl->addFieldConditional('Awarded', null, 'is not');
     }else {
@@ -223,10 +235,11 @@ class ResearchGrantFactory extends GrantApplicationFactory{
     $grantList = '';
     if (!empty($results)){
       foreach($results as $k => $v){
+        $appDate = date('Y-m-d g:i A', strtotime($results[$k]['ApplicationDate']));
         $grantList .= '<tr><td>' . $results[$k]['FirstName'] . ' ' . $results[$k]['LastName'] . '</td>' .
             '<td>' . $results[$k]['FAFirstName'] . ' ' . $results[$k]['FALastName'] . '</td>' .
             '<td>' . $results[$k]['ResearchTitle'] . '</td>' .
-            '<td>' . $results[$k]['ApplicationDate'] . '</td>' .
+            '<td>' . $appDate . '</td>' .
             '<td><a href="index.php?module=osr&amp;cmd=researchedit&amp;id=' . $results[$k]['ID'] .
             '">Edit</a></td><td><a href="index.php?module=osr&amp;cmd=researchdelete&amp;id=' .
             $results[$k]['ID'] . '">Delete</a></td>';
@@ -249,7 +262,7 @@ class ResearchGrantFactory extends GrantApplicationFactory{
       //ATTENTION: Throw an error
     }
     $db = Database::getDB();
-    $tbl = $db->addTable('osr_research_apps');
+    $tbl = $db->addTable($this->table);
     $tbl->addFieldConditional('ID', $grantID, '=');
 
     $results = $db->select();
@@ -258,6 +271,35 @@ class ResearchGrantFactory extends GrantApplicationFactory{
     else {
       return false;
     }
+  }
+
+  public function UpdateDetail($grantID, $results) {
+
+    /*$db = Database::getDB();
+    $tbl = $db->addTable($this->table);
+    $tbl->addFieldConditional('ID', $grantID, '=');
+    $tbl->addValue('Phone', $results['Phone']);
+    $tbl->addValue('Status', $results['Status']);
+    if (!empty($results['Awarded'])){
+      $tbl->addValue('Awarded', $results['Awarded']);
+      $tbl->addValue('AwardAmount', $results['AwardAmount']);
+      $tbl->addValue('AwardDate', )
+    }
+    $db->update();*/
+    $app = new ResearchGrantApplication;
+    $app->id = $grantID;
+
+    $app = $this->LoadProperties($app, $results);
+    $app->ApplicationDate = $results['ApplicationDate'];
+    if (!empty($results['Awarded'])){
+
+      $app->Awarded = $results['Awarded'];
+      $app->AwardAmount = $results['AwardAmount'];
+      $app->AwardDate = date("Y-m-d H:i:s", time());
+    }
+
+    ResourceFactory::saveResource($app);
+
 
   }
 }

@@ -2,21 +2,24 @@
 <!-- BEGIN ERRORONPAGE-->
 <div class="label label-danger">{ERRORONPAGE}</div>
 <!-- END ERRORONPAGE -->
-<form name="ResearchApply" id="form" action="index.php?module=osr&cmd=researcheditpost" method="post">
+<form name="ResearchApply" id="form" action="index.php?module=osr&cmd=researcheditpost&id={id}" method="post">
   <div class="panel panel-default">
   	<div class="panel-heading">About You</div>
   		<div class="panel-body">
         <label for="FirstName">First Name: </label>
         <div class="input-group">
           <input type="text" readonly class="form-control-plaintext" id="FirstName" value="{FirstName}">
+          <input type="hidden" name="FirstName" value="{FirstName}">
         </div>
         <label for="LastName">Last Name: </label>
         <div class="input-group">
           <input type="text" readonly class="form-control-plaintext" id="LastName" value="{LastName}">
+          <input type="hidden" name="LastName" value="{LastName}">
         </div>
         <label for="Email">Email: </label>
         <div class="input-group">
           <input type="text" readonly class="form-control-plaintext" id="Email" value="{Email}">
+          <input type="hidden" name="Email" value="{Email}">
         </div>
         <!---<label for="FirstName">First Name:</label>
         <div class="input-group">
@@ -302,7 +305,10 @@
            </div><br />
          </div>
       </div>
-
+    <input type="hidden" name="ApplicationDate" value="{ApplicationDate}">
+    <input type="hidden" name="BannerID" value="{BannerID}">
+    <input type="hidden" name="StudentID" value="{StudentID}">
+    <input type="hidden" name="GPA" value="{GPA}">
     <input type="submit" name="Submit" value="Submit" validate="submitonce" class="btn btn-default">
 
 </form>

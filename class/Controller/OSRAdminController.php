@@ -8,27 +8,30 @@ class OSRAdminController{
       switch ($_GET['cmd']) {
         case 'awardmenu':
           return \PHPWS_Template::process(array(), 'osr', 'awardmenu.tpl');
-        break;
+          break;
         case 'managedates':
-        break;
+          break;
         case 'abstractmenu':
-        break;
+          break;
         case 'reportingmenu':
-        break;
+          break;
         case 'recommendationlist':
-        break;
+          break;
         case 'osrresearchlist':
           return $this->BuildOSRResearchList();
-        break;
+          break;
         case 'researchedit':
           return $this->BuildOSRResearchEdit();
-        break;
+          break;
+        case 'researcheditpost':
+          return $this->BuildOSRResearchPost();
+          break;
         case 'osrtravellist':
-        break;
+          break;
         case 'internationallist';
-        break;
+          break;
         case 'gradlist';
-        break;
+          break;
 
       }
     } else {
@@ -47,10 +50,22 @@ class OSRAdminController{
 
   public function BuildOSRResearchEdit(){
     $researchGrant = new ResearchGrantFactory;
-    $arr = $researchGrant->RetrieveDetail($_GET['id']);
-    
+    $request = \Canopy\Server::getCurrentRequest();
+    $arr['id'] = $request->pullGetInteger('id');
+    $arr += $researchGrant->RetrieveDetail($arr['id']);
+    //ATTENTION: what if record can't be found?
     $arr += $researchGrant->BuildForm(TRUE, $arr);
+
     return \PHPWS_Template::process($arr, 'osr', 'osrresearchedit.tpl');
+
+  }
+
+  public function BuildOSRResearchPost(){
+    $researchGrant = new ResearchGrantFactory;
+    $request = \Canopy\Server::getCurrentRequest();
+    //Build the array from the Post?
+    $results = $_POST;
+    $arr = $researchGrant->UpdateDetail($request->pullGetInteger('id'), $results);
 
   }
 

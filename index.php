@@ -20,7 +20,7 @@ if (\Current_User::isLogged()) {
   else
     go to student controller
   */
-  $isOSRAdmin = false;
+  $isOSRAdmin = true;
   //if (\Current_User::allow('osr')) {
   if ($isOSRAdmin){
     $role = 'osradmin';

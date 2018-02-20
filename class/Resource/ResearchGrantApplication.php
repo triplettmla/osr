@@ -5,7 +5,7 @@ use \phpws2\Variable;
 
 class ResearchGrantApplication extends Base{
   //Student Applicant
-  protected $ID; // research grant application id (is this a codeword??)
+  protected $id; // research grant application id (is this a codeword??)
   protected $StudentID;
   protected $FirstName;
   protected $LastName;
@@ -59,7 +59,7 @@ class ResearchGrantApplication extends Base{
   public function __construct()
   {
       parent::__construct();
-      $this->ID = new Variable\IntegerVar(0, 'ID');
+      $this->id = new Variable\IntegerVar(0, 'ID');
       $this->StudentID = new Variable\StringVar(null, 'StudentID');
       $this->FirstName = new Variable\StringVar(null, 'FirstName');
       $this->LastName = new Variable\StringVar(null, 'LastName');
@@ -68,7 +68,7 @@ class ResearchGrantApplication extends Base{
       $this->Phone->allowEmpty(false);
       $this->Status = new Variable\StringVar(null, 'Status');
       $this->Major = new Variable\StringVar(null, 'Major');
-      $this->Honors = new Variable\BooleanVar(null, 'Honors');
+      $this->Honors = new Variable\BooleanVar(false, 'Honors');
       $this->BannerID = new Variable\NumberString(null, 'BannerID');
       $this->GPA = new Variable\DecimalVar(1.0, 'GPA');
 
@@ -78,27 +78,28 @@ class ResearchGrantApplication extends Base{
       $this->FACollege = new Variable\StringVar(null, 'FACollege');
       $this->FADept = new Variable\StringVar(null, 'FADept');
 
-      $this->Amount = new Variable\IntegerVar(null, 'Amount');
-      $this->AmountLess = new Variable\BooleanVar(null, 'AmountLess');
+      $this->Amount = new Variable\IntegerVar(0, 'Amount');
+      $this->AmountLess = new Variable\BooleanVar(false, 'AmountLess');
       $this->BudgetJustification = new Variable\StringVar(null, 'BudgetJustification');
       $this->ResearchTitle = new Variable\StringVar(null, 'ResearchTitle');
       $this->ResearchDescription = new Variable\StringVar(null, 'ResearchDescription');
-      $this->IRBApproved = new Variable\BooleanVar(null, 'IRBApproved');
-      $this->IACUCApproved = new Variable\BooleanVar(null, 'IACUCApproved');
-      $this->IBCApproved = new Variable\BooleanVar(null, 'IBCApproved');
+      $this->IRBApproved = new Variable\BooleanVar(false, 'IRBApproved');
+      $this->IACUCApproved = new Variable\BooleanVar(false, 'IACUCApproved');
+      $this->IBCApproved = new Variable\BooleanVar(false, 'IBCApproved');
       $this->IRBProtocol = new Variable\StringVar(null, 'IRBProtocol');
       $this->IACUCProtocol = new Variable\StringVar(null, 'IACUCProtocol');
       $this->IBCProtocol = new Variable\StringVar(null, 'IBCProtocol');
-      $this->priorFunding = new Variable\BooleanVar(null, 'priorFunding');
-      $this->Abroad = new Variable\BooleanVar(null, 'Abroad');
-      $this->Visible = new Variable\BooleanVar(null, 'Visible');
+      $this->priorFunding = new Variable\BooleanVar(false, 'priorFunding');
+      $this->Abroad = new Variable\BooleanVar(false, 'Abroad');
+      $this->Visible = new Variable\BooleanVar(false, 'Visible');
       $this->ApplicationDate = new Variable\StringVar(null, 'ApplicationDate');
 
-      /*$this->Awarded = new Variable\StringVar(null, 'Awarded');
-      $this->AwardAmount = new Variable\StringVar(null, 'AwardAmount');
+      $this->Awarded = new Variable\StringVar(null, 'Awarded');
+      $this->AwardAmount = new Variable\IntegerVar(0, 'AwardAmount');
       $this->AwardDate = new Variable\StringVar(null, 'AwardDate');
+      $this->AwardDate->allowNull(true);
 
-      $this->Presented = new Variable\BooleanVar(null, 'Presented');
+      /*$this->Presented = new Variable\BooleanVar(null, 'Presented');
       $this->MeetingDate = new Variable\StringVar(null, 'MeetingDate');
       $this->MeetingLocation = new Variable\StringVar(null, 'MeetingLocation');
       $this->FinalReport = new Variable\StringVar(null, 'FinalReport');
